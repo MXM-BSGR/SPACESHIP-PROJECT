@@ -5,10 +5,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SPACESHIP</title>
+    <link rel="stylesheet" href="style.css">
     <script defer src="./spaceship.js"></script>
 </head>
 
 <body>
+    <main>
+        <section id="id_status_section">
+            <table id="table_wrapper">
+                <tr>
+                    <th id="table_header" colspan="2">Space Ship Info</th>
+                </tr>
+                <tr>
+                    <th class="status_heading">Ship Name</th>
+                    <td id="shipName">name</td>
+                </tr>
+                <tr>
+                    <th class="status_heading">Ship HP</th>
+                    <td id="shipHP">HP</td>
+                </tr>
+                <tr>
+                    <th class="status_heading">Money</th>
+                    <td id="playerMoney">dollar</td>
+                </tr>
+                <tr>
+                    <th id="id_repair_kits_header" colspan="2">Repair Kits</th>
+
+                </tr>
+                <tr>
+                    <th class="status_heading">Small</th>
+                    <td id="smallRepaiKitAmount">amount</td>
+                </tr>
+                <tr>
+                    <th class="status_heading">Large</th>
+                    <td id="largeRepairKitAmount">amount</td>
+                </tr>
+            </table>
+        </section>
+        <section id="input_section">
+            <input id="input_add_damadge" type="number">
+            <button id="attack_execute_btn" onclick="attackTriggeredBySubmitBtn(), renderHP()">! ATTACK !</button>
+
+        </section>
+
+
+
+
+    </main>
 
 </body>
 

@@ -1,5 +1,7 @@
 // console.log("test");
 
+// #region Arbeitsaufgaben 1
+
 // 1. Erstelle ein leeres Projekt in VSCode (check)
 // a. Lege die Dateien index.html und script.js an (check)
 // b. Verlinke die script.js Datei im HTML (check)
@@ -18,6 +20,36 @@
 // Hinweis:
 // Leben, Preise, Schadenshöhe usw. sind frei wählbar
 
+//#endregion
+
+// #region Arbeitsaufgaben 2
+
+// Arbeitsblatt Spaceship II
+// 1. Ändere die Funktion getStatus wie folgt ab:
+// a. Benenne sie in renderStatus um
+// b. Rendere die Statuswerte des Raumschiffs in einer Tabelle im
+// HTML
+// 2. Füge deinem Template ein Input Feld sowie einen Button hinzu. Über
+// das Input Feld soll die Höhe des Schadens reguliert werden, mit dem
+// Button soll dieser dann dem Raumschiff hinzugefügt werden.
+// 3. Füge deinem Template ein Input Feld sowie einen Button hinzu. Über
+// das Input Feld soll die Anzahl der zu kaufenden Reparatursets reguliert
+// werden, mit dem Button soll der Kaufprozess abgeschlossen werden.
+// 4. Füge deinem Template einen Button hinzu. Über diesen soll immer
+// genau ein Reparaturset eingesetzt werden.
+// 5. Erstelle eine Funktion, um Fehlermeldungen aus allen anderen
+// Funktionen generisch anzuzeigen (zu wenig Geld, keine Reparatursets
+// mehr, ...).
+// 6. Sobald das Leben des Raumschiffs auf 0 oder weniger fällt, soll das
+// deutlich erkennbar sein (z.b.: einfärben des Hintergrunds, Text
+// einblenden, etc.).
+// Zusatz:
+// 1. Gestalte das Projekt mit CSS.
+// Hinweis:
+// Leben, Preise, Schadenshöhe usw. sind frei wählbar.
+
+//#endregion
+
 //#region VARIABLES
 const spaceShipName = "Hail Mary";
 
@@ -34,7 +66,7 @@ let costOfrepairKitLarge = 60;
 let amountOfRepairKitsSmall = 0;
 let amountOfRepairKitsLarge = 0;
 
-let damadgeValue = 80;
+let damadgeValue = 0;
 let damadgeType = "";
 const laserHit = 10;
 const rocketHit = 50;
@@ -43,6 +75,15 @@ const spaceShipCollision = 30;
 
 //#endregion
 
+document.getElementById("shipName").innerText = `${spaceShipName}`;
+
+
+document.getElementById("shipHP").innerText = `${spaceShipCondition} %`;
+
+document.getElementById("playerMoney").innerText = `${money} $`;
+document.getElementById("smallRepaiKitAmount").innerText = `${amountOfRepairKitsSmall}`;
+document.getElementById("largeRepairKitAmount").innerText = `${amountOfRepairKitsLarge}`;
+
 //#region FUNCTIONS
 
 function showAmountOfRepairKits() {
@@ -50,7 +91,7 @@ function showAmountOfRepairKits() {
     return console.log(`Small Repair Kit: ${amountOfRepairKitsSmall}\nLarge Repair Kit: ${amountOfRepairKitsLarge}`);
 
 }
-function showSpaceShipStatus() {
+function renderStatus() {
     console.log(spaceShipName);
     // console.log(spaceShipCondition + " " + "%");
     console.log(`${spaceShipCondition} %`);
@@ -64,11 +105,9 @@ function showSpaceShipStatus() {
 function checkSpaceShipCondition() {
     if (spaceShipCondition > 20) {
         console.log(`It´s all right Condition is ${spaceShipCondition} %`);
-    } else if (spaceShipCondition <= 20) {
+    } else if (spaceShipCondition <= 20 && spaceShipCondition > 0) {
         console.log(`${spaceShipName} Condition is ${spaceShipCondition} %\n! REPAIR your SHIP !`);
-    }
-
-    else {
+    } else /* if (spaceShipCondition <= 0) */ {
         console.log("GAME OVER");
     }
 }
@@ -77,8 +116,8 @@ function checkSpaceShipCondition() {
 
 function gotDamadge(value) {
     spaceShipCondition -= value;
-    showdamadgeType(value);
-    console.log(`You got hit by a ${damadgeType}`);
+    // showdamadgeType(value);
+    // console.log(`You got hit by a ${damadgeType}`);
     if (spaceShipCondition <= 0) {
         checkSpaceShipCondition();
         return
@@ -176,77 +215,91 @@ function earnMoney(howMuch) {
     money += howMuch;
 }
 
+function attackTriggeredBySubmitBtn(input) {
+    input = document.getElementById("input_add_damadge").value;
+    damadgeValue = input;
 
+    gotDamadge(input);
+    console.log(spaceShipCondition);
 
-showSpaceShipStatus();
-// checkSpaceShipCondition()
-// showMoney();
-useRepairKitSmall()
-useRepairKitLarge()
-// showAmountOfRepairKits();
+}
 
-// buyRepairKitSmall();
-gotDamadge(damadgeValue);
-// checkSpaceShipCondition()
-useRepairKitSmall();
-// showMoney();
-// showAmountOfRepairKits();
-// buyRepairKitLarge()
-// showMoney();
-// showAmountOfRepairKits();
+function renderHP() {
+    document.getElementById("shipHP").innerText = `${spaceShipCondition} %`;
+}
 
+// renderStatus()
+
+// // checkSpaceShipCondition()
+// // showMoney();
+// useRepairKitSmall()
+// useRepairKitLarge()
+// // showAmountOfRepairKits();
+
+// // buyRepairKitSmall();
+// gotDamadge(damadgeValue);
+// // checkSpaceShipCondition()
 // useRepairKitSmall();
+// // showMoney();
+// // showAmountOfRepairKits();
+// // buyRepairKitLarge()
+// // showMoney();
+// // showAmountOfRepairKits();
+
+// // useRepairKitSmall();
 
 
-// // amountOfRepairKitsSmall = 0;
-buyRepairKitSmall();
-useRepairKitSmall()
-useRepairKitLarge()
-buyRepairKitLarge()
-useRepairKitLarge()
-showAmountOfRepairKits();
-useRepairKitLarge()
+// // // amountOfRepairKitsSmall = 0;
 
-gotDamadge(damadgeValue);
-useRepairKitLarge()
-buyRepairKitSmall();
-buyRepairKitLarge()
-earnMoney(200)
-buyRepairKitSmall();
-buyRepairKitLarge()
-showAmountOfRepairKits();
-showMoney();
-buyRepairKitLarge()
-checkSpaceShipCondition()
-useRepairKitLarge()
-showMoney();
-checkSpaceShipCondition()
-gotDamadge(damadgeValue);
-showAmountOfRepairKits();
-useRepairKitSmall()
-showMoney();
-useRepairKitSmall()
-useRepairKitLarge()
-buyRepairKitSmall()
-buyRepairKitSmall()
-useRepairKitLarge()
-useRepairKitSmall()
-buyRepairKitLarge()
-useRepairKitSmall()
-useRepairKitLarge()
+// renderStatus()
+// buyRepairKitSmall();
+// useRepairKitSmall()
+// useRepairKitLarge()
+// buyRepairKitLarge()
+// useRepairKitLarge()
+// showAmountOfRepairKits();
+// useRepairKitLarge()
 
-changeKindOfDamadge(laserHit)
-gotDamadge(damadgeValue);
-gotDamadge(damadgeValue);
-gotDamadge(damadgeValue);
-gotDamadge(damadgeValue);
-gotDamadge(damadgeValue);
-gotDamadge(damadgeValue);
-gotDamadge(damadgeValue);
-gotDamadge(damadgeValue);
-gotDamadge(damadgeValue);
-gotDamadge(damadgeValue);
-gotDamadge(damadgeValue);
+// gotDamadge(damadgeValue);
+// useRepairKitLarge()
+// buyRepairKitSmall();
+// buyRepairKitLarge()
+// earnMoney(200)
+// buyRepairKitSmall();
+// buyRepairKitLarge()
+// showAmountOfRepairKits();
+// showMoney();
+// buyRepairKitLarge()
+// checkSpaceShipCondition()
+// useRepairKitLarge()
+// showMoney();
+// checkSpaceShipCondition()
+// gotDamadge(damadgeValue);
+// showAmountOfRepairKits();
+// useRepairKitSmall()
+// showMoney();
+// useRepairKitSmall()
+// useRepairKitLarge()
+// buyRepairKitSmall()
+// buyRepairKitSmall()
+// useRepairKitLarge()
+// useRepairKitSmall()
+// buyRepairKitLarge()
+// useRepairKitSmall()
+// useRepairKitLarge()
+
+// changeKindOfDamadge(laserHit)
+// gotDamadge(damadgeValue);
+// gotDamadge(damadgeValue);
+// gotDamadge(damadgeValue);
+// gotDamadge(damadgeValue);
+// gotDamadge(damadgeValue);
+// gotDamadge(damadgeValue);
+// gotDamadge(damadgeValue);
+// gotDamadge(damadgeValue);
+// gotDamadge(damadgeValue);
+// gotDamadge(damadgeValue);
+// gotDamadge(damadgeValue);
 
 
 // changeKindOfDamadge(laserHit);
@@ -271,5 +324,15 @@ gotDamadge(damadgeValue);
 // checkSpaceShipCondition()
 
 
+
+//#endregion
+
+//#region RENDER TABLE
+
+document.getElementById("shipName").innerText = `${spaceShipName}`;
+document.getElementById("shipHP").innerText = `${spaceShipCondition} %`;
+document.getElementById("playerMoney").innerText = `${money} $`;
+document.getElementById("smallRepaiKitAmount").innerText = `${amountOfRepairKitsSmall}`;
+document.getElementById("largeRepairKitAmount").innerText = `${amountOfRepairKitsLarge}`;
 
 //#endregion
