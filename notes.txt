@@ -1,0 +1,21 @@
+09.10.2026
+added function:
+
+showAmountOfRepairKits()
+
+showSpaceShipStatus()
+
+checkSpaceShipCondition()
+
+gotDamadge()
+changeKindOfDamadge()
+showdamadgeType()
+
+showMoney()
+
+buyRepairKitSmall()
+buyRepairKitLarge()
+useRepairKitSmall()
+useRepairKitLarge()
+
+earnMoney()
