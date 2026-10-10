@@ -80,6 +80,8 @@ const hitVisualizer = document.getElementById("id_game_visualizer_hit");
 
 const gameOverMsg = document.getElementById("id_game_over_msg");
 
+let inputAttackValue = document.getElementById("input_add_damadge");
+
 //#endregion
 
 
@@ -134,18 +136,27 @@ function gotDamadge(value) {
         checkSpaceShipCondition();
         return
     }
-    console.log(`You lost ${damadgeValue} % HP`);
-    checkSpaceShipCondition()
+    if (inputAttackValue.value > 0) {
+        console.log(`You lost ${damadgeValue} % HP`);
+        checkSpaceShipCondition()
+    }
 }
 
 function showHit() {
-    hitVisualizer.classList.add("hit_animation");
-    setTimeout(removeAnimation, 300, "hit_animation")
+    // console.dir(inputAttackValue);
+    // console.log(inputAttackValue.value);
+    if (inputAttackValue.value > 0) {
+
+        hitVisualizer.classList.add("hit_animation");
+        setTimeout(removeAnimation, 300, "hit_animation")
+    } else {
+        return console.log("NO Attack Value setted");
+    }
 
 }
 
 function showGameOver() {
-    gameOverMsg.classList.add("gameOverAnimation");
+    gameOverMsg.classList.add("game_over_animation");
     gameOverMsg.style.pointerEvents = "all";
 
 }
@@ -155,7 +166,7 @@ function restart() {
 }
 
 function removeAnimation(animationName) {
-    console.log(animationName);
+    // console.log(animationName);
     hitVisualizer.classList.remove(animationName);
 }
 
@@ -254,8 +265,13 @@ function attackTriggeredBySubmitBtn(input) {
     damadgeValue = input;
 
     gotDamadge(input);
-    console.log(spaceShipCondition);
+    setTimeout(resetInputDamage, 100);
+    // document.getElementById("input_add_damadge").value = "";
+    // console.log(spaceShipCondition);
 
+}
+function resetInputDamage() {
+    document.getElementById("input_add_damadge").value = "";
 }
 
 function renderHP() {
@@ -363,10 +379,6 @@ function renderHP() {
 
 //#region RENDER TABLE
 
-document.getElementById("shipName").innerText = `${spaceShipName}`;
-document.getElementById("shipHP").innerText = `${spaceShipCondition} %`;
-document.getElementById("playerMoney").innerText = `${money} $`;
-document.getElementById("smallRepaiKitAmount").innerText = `${amountOfRepairKitsSmall}`;
-document.getElementById("largeRepairKitAmount").innerText = `${amountOfRepairKitsLarge}`;
+
 
 //#endregion

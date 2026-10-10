@@ -9,7 +9,7 @@
     <script defer src="./spaceship.js"></script>
 </head>
 
-<body>
+<body onload="renderStatus()">
     <div id="id_game_visualizer_hit" class="game_visualizer_hit"></div>
     <div id="id_game_over_msg" class="game_over_visualizer" onclick="restart()">
         <h1>GAME OVER</h1>
@@ -50,7 +50,7 @@
         </section>
         <section class="input_section">
             <div class="one_input_one_btn">
-                <input id="input_add_damadge" type="number">
+                <input id="input_add_damadge" type="number" placeholder="set your Attack Value">
                 <button id="attack_execute_btn" type="button"
                     onclick="attackTriggeredBySubmitBtn(), renderHP(), showHit()">!
                     ATTACK

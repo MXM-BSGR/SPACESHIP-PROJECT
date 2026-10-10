@@ -1,5 +1,5 @@
-09.10.2026
-added function:
+# 09.10.2026
+**added function**:
 
 showAmountOfRepairKits()
 
@@ -23,14 +23,14 @@ earnMoney()
 rename showSpaceShipStatus() to renderStatus()
 attackTriggeredBySubmitBtn()
 
-10.10.26
+# 10.10.26
+**added Variables**:
 
-added Variables:
 const hitVisualizer
 const gameOverMsg
+let inputAttackValue
 
-
-added functions
+**added functions**
 
 showHit()
 showGameOver()
