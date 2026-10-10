@@ -75,14 +75,13 @@ const spaceShipCollision = 30;
 
 //#endregion
 
-document.getElementById("shipName").innerText = `${spaceShipName}`;
+//#region GLOBAL FUNCTION VARIABLES
+const hitVisualizer = document.getElementById("id_game_visualizer_hit");
 
+const gameOverMsg = document.getElementById("id_game_over_msg");
 
-document.getElementById("shipHP").innerText = `${spaceShipCondition} %`;
+//#endregion
 
-document.getElementById("playerMoney").innerText = `${money} $`;
-document.getElementById("smallRepaiKitAmount").innerText = `${amountOfRepairKitsSmall}`;
-document.getElementById("largeRepairKitAmount").innerText = `${amountOfRepairKitsLarge}`;
 
 //#region FUNCTIONS
 
@@ -98,6 +97,16 @@ function renderStatus() {
     // console.log(money + " " + "$");
     console.log(`${money} $`);
     showAmountOfRepairKits();
+
+    document.getElementById("shipName").innerText = `${spaceShipName}`;
+
+    document.getElementById("shipHP").innerText = `${spaceShipCondition} %`;
+
+    document.getElementById("playerMoney").innerText = `${money} $`;
+
+    document.getElementById("smallRepaiKitAmount").innerText = `${amountOfRepairKitsSmall}`;
+
+    document.getElementById("largeRepairKitAmount").innerText = `${amountOfRepairKitsLarge}`;
 }
 
 
@@ -107,9 +116,11 @@ function checkSpaceShipCondition() {
         console.log(`It´s all right Condition is ${spaceShipCondition} %`);
     } else if (spaceShipCondition <= 20 && spaceShipCondition > 0) {
         console.log(`${spaceShipName} Condition is ${spaceShipCondition} %\n! REPAIR your SHIP !`);
-    } else /* if (spaceShipCondition <= 0) */ {
+    } else {
+        showGameOver()
         console.log("GAME OVER");
     }
+
 }
 
 
@@ -119,12 +130,35 @@ function gotDamadge(value) {
     // showdamadgeType(value);
     // console.log(`You got hit by a ${damadgeType}`);
     if (spaceShipCondition <= 0) {
+        spaceShipCondition = 0;
         checkSpaceShipCondition();
         return
     }
     console.log(`You lost ${damadgeValue} % HP`);
     checkSpaceShipCondition()
 }
+
+function showHit() {
+    hitVisualizer.classList.add("hit_animation");
+    setTimeout(removeAnimation, 300, "hit_animation")
+
+}
+
+function showGameOver() {
+    gameOverMsg.classList.add("gameOverAnimation");
+    gameOverMsg.style.pointerEvents = "all";
+
+}
+
+function restart() {
+    location.reload();
+}
+
+function removeAnimation(animationName) {
+    console.log(animationName);
+    hitVisualizer.classList.remove(animationName);
+}
+
 
 function changeKindOfDamadge(damadgePoints) {
     damadgeValue = damadgePoints;

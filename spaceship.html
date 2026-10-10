@@ -10,6 +10,12 @@
 </head>
 
 <body>
+    <div id="id_game_visualizer_hit" class="game_visualizer_hit"></div>
+    <div id="id_game_over_msg" class="game_over_visualizer" onclick="restart()">
+        <h1>GAME OVER</h1>
+        <h3>click 2 restart</h3>
+
+    </div>
     <main>
         <section id="id_status_section">
             <table id="table_wrapper">
@@ -42,10 +48,23 @@
                 </tr>
             </table>
         </section>
-        <section id="input_section">
-            <input id="input_add_damadge" type="number">
-            <button id="attack_execute_btn" onclick="attackTriggeredBySubmitBtn(), renderHP()">! ATTACK !</button>
+        <section class="input_section">
+            <div class="one_input_one_btn">
+                <input id="input_add_damadge" type="number">
+                <button id="attack_execute_btn" type="button"
+                    onclick="attackTriggeredBySubmitBtn(), renderHP(), showHit()">!
+                    ATTACK
+                    !</button>
+            </div>
 
+            <div class="one_input_two_btn">
+                <button id="buy_small_repair_kit" type="button" onclick="">SMALL</button>
+                <div id="buy_kit_qty">
+                    <label for="kit_qty">Choose how much you want to BUY</label>
+                    <input id="kit_qty" type="number">
+                </div>
+                <button id="buy_large_repair_kit" type="button" onclick="">LARGE</button>
+            </div>
         </section>
 
 

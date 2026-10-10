@@ -1,0 +1,27 @@
+{
+  "name": "spaceship-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "spaceship.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MXM-BSGR/SPACESHIP-PROJECT.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/MXM-BSGR/SPACESHIP-PROJECT/issues"
+  },
+  "homepage": "https://github.com/MXM-BSGR/SPACESHIP-PROJECT#readme",
+  "devDependencies": {
+    "stylelint": "^17.16.0",
+    "stylelint-config-concentric-order": "^5.5.0",
+    "stylelint-config-standard": "^40.0.0",
+    "stylelint-order": "^8.1.2"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "css.validate": false,
+  "stylelint.enable": true,
+  "stylelint.validate": ["css", "postcss"],
+  "editor.codeActionsOnSaveTimeout": 2000,
+  "[css]": {
+    "editor.formatOnSave": false,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.stylelint": "explicit"
+    }
+  }
+}

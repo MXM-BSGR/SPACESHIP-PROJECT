@@ -1,0 +1,10 @@
+.hud_status_display {
+  display: flex;
+  position: absolute;
+  margin: 2rem;
+  border: 1px solid #0ff;
+  background-color: #050811;
+  padding: 1.5rem;
+  color: #0ff;
+  font-size: 1rem;
+}

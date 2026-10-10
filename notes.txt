@@ -19,3 +19,6 @@ useRepairKitSmall()
 useRepairKitLarge()
 
 earnMoney()
+
+rename showSpaceShipStatus() to renderStatus()
+attackTriggeredBySubmitBtn()
