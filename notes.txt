@@ -22,3 +22,17 @@ earnMoney()
 
 rename showSpaceShipStatus() to renderStatus()
 attackTriggeredBySubmitBtn()
+
+10.10.26
+
+added Variables:
+const hitVisualizer
+const gameOverMsg
+
+
+added functions
+
+showHit()
+showGameOver()
+restart ()
+removeAnimation()
