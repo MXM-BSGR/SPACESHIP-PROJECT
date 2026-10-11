@@ -66,6 +66,7 @@ let costOfrepairKitLarge = 60;
 let amountOfRepairKitsSmall = 0;
 let amountOfRepairKitsLarge = 0;
 
+
 let damadgeValue = 0;
 let damadgeType = "";
 const laserHit = 10;
@@ -84,6 +85,9 @@ let inputAttackValue = document.getElementById("input_add_damadge");
 
 let inputKitQtyRef = document.getElementById("input_kit_qty");
 let kit_qty = Number(inputKitQtyRef.value);
+
+const amountOfRepairKitsSmallRef = document.getElementById("smallRepaiKitAmount");
+const amountOfRepairKitsLargeRef = document.getElementById("largeRepairKitAmount");
 // console.log(kit_qty);
 
 // function logKitsToBuy() {
@@ -110,15 +114,26 @@ function renderStatus() {
     console.log(`${money} $`);
     showAmountOfRepairKits();
 
-    document.getElementById("shipName").innerText = `${spaceShipName}`;
+    document.getElementById("shipName").innerText = `| ${spaceShipName} |`;
 
-    document.getElementById("shipHP").innerText = `${spaceShipCondition} %`;
+    document.getElementById("shipHP").innerText = `${spaceShipCondition} HP`;
 
     document.getElementById("playerMoney").innerText = `${money} $`;
 
-    document.getElementById("smallRepaiKitAmount").innerText = `${amountOfRepairKitsSmall}`;
+    amountOfRepairKitsSmallRef.innerText = `${amountOfRepairKitsSmall}`;
+    if (amountOfRepairKitsSmall === 0) {
+        amountOfRepairKitsSmallRef.style.color = "red";
+    } else {
+        amountOfRepairKitsSmallRef.style.color = "rgb(0 255 149)";
+        amountOfRepairKitsSmallRef.style.backgroundColor = unset;
+    }
 
-    document.getElementById("largeRepairKitAmount").innerText = `${amountOfRepairKitsLarge}`;
+    amountOfRepairKitsLargeRef.innerText = `${amountOfRepairKitsLarge}`;
+    if (amountOfRepairKitsLarge === 0) {
+        amountOfRepairKitsLargeRef.style.color = "red";
+    } else {
+        amountOfRepairKitsLargeRef.style.color = "rgb(0 255 149)";
+    }
 }
 
 
@@ -329,7 +344,9 @@ function renderHP() {
 function showErrorMsg(erMsg) {
     // console.dir(cockpitMsgDisplay);
     cockpitMsgDisplay.textContent = erMsg;
-    cockpitMsgDisplay.style.color = "red";
+
+    cockpitMsgDisplay.style.backgroundColor = "rgb(255 0 43 / 71.9%)";
+    cockpitMsgDisplay.style.color = "rgb(255 179 0)";
 
 }
 function showSuccesMsg(positiveMsg) {

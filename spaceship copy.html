@@ -9,55 +9,76 @@
     <link rel="stylesheet" href="fonts.css">
     <link rel="stylesheet" href="alt_style.css">
 
-    <script defer src="./spaceship.js"></script>
+    <script defer src="./spaceship_copy.js"></script>
 </head>
 
 <body onload="renderStatus()">
-    <div id="id_game_visualizer_hit" class="game_visualizer_hit"></div>s
+    <div id="id_game_visualizer_hit" class="game_visualizer_hit"></div>
     <div id="id_game_over_msg" class="game_over_visualizer" onclick="restart()">
         <h1>GAME OVER</h1>
         <h3>click 2 restart</h3>
 
     </div>
     <main>
-        <section id="id_status_section">
-            <table id="table_wrapper">
-                <tr>
-                    <th id="table_header" colspan="2">Space Ship Info</th>
-                </tr>
-                <tr>
-                    <th class="status_heading">Ship Name</th>
-                    <td id="shipName">name</td>
-                </tr>
-                <tr>
-                    <th class="status_heading">Ship HP</th>
-                    <td id="shipHP">HP</td>
-                </tr>
-                <tr>
-                    <th class="status_heading">Money</th>
-                    <td id="playerMoney">dollar</td>
-                </tr>
-                <tr>
-                    <th id="id_repair_kits_header" colspan="2">Repair Kits</th>
-
-                </tr>
-                <tr>
-                    <th class="status_heading">Small</th>
-                    <td id="smallRepaiKitAmount">amount</td>
-                </tr>
-                <tr>
-                    <th class="status_heading">Large</th>
-                    <td id="largeRepairKitAmount">amount</td>
-                </tr>
+        <!-- <section class="msg_section">
+            <div class="msg_wrapper">
                 <tr>
                     <th id="id_status_msg_tabel_row" colspan="2">Status Msg</th>
 
                 </tr>
+                <p id="id_status_msg_diplay" colspan="2">...</p>
+
+            </div>
+        </section> -->
+        <section id="id_status_section">
+            <div class="display_darkener">
+                <table id="status_table_wrapper">
+                    <!-- <tr>
+                    <th id="table_header" colspan="2">Space Ship Info</th>
+                </tr> -->
+                    <tr>
+                        <!-- <th class="status_heading">Ship Name</th> -->
+                        <td id="playerMoney">dollar</td>
+                        <!-- </tr>
+                <tr> -->
+                        <!-- <th class="status_heading">Ship HP</th> -->
+                        <td id="shipName">name</td>
+                        <!-- </tr>
+                <tr> -->
+                        <!-- <th class="status_heading">Money</th> -->
+                        <td id="shipHP">HP</td>
+                    </tr>
+                </table>
+                <table id="repair_kit_table_wrapper">
+                    <tr>
+                        <th id="id_repair_kits_header">Repair Kits:</th>
+
+                        <!-- </tr>
+                <tr> -->
+                        <th class="status_heading">Small</th>
+                        <td id="smallRepaiKitAmount">amount</td>
+                        <!-- </tr>
+                <tr> -->
+                        <th class="status_heading">Large</th>
+                        <td id="largeRepairKitAmount">amount</td>
+                    </tr>
+                </table>
+                <!-- <tr>
+                    <th id="id_status_msg_tabel_row" colspan="2">Status Msg</th>
+                </tr>
                 <tr>
                     <td id="id_status_msg_diplay" colspan="2">...</td>
-                </tr>
+                </tr> -->
 
-            </table>
+                <div class="msg_wrapper">
+
+                    <p id="id_status_msg_diplay" colspan="2">just 5 tradfa </p>
+
+                </div>
+            </div>
+
+
+
         </section>
         <section class="input_section">
             <div class="one_input_one_btn">
