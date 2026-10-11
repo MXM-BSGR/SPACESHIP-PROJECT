@@ -26,23 +26,23 @@
 
 // Arbeitsblatt Spaceship II
 // 1. Ändere die Funktion getStatus wie folgt ab:
-// a. Benenne sie in renderStatus um
+// a. Benenne sie in renderStatus um (check)
 // b. Rendere die Statuswerte des Raumschiffs in einer Tabelle im
-// HTML
+// HTML (check)
 // 2. Füge deinem Template ein Input Feld sowie einen Button hinzu. Über
 // das Input Feld soll die Höhe des Schadens reguliert werden, mit dem
-// Button soll dieser dann dem Raumschiff hinzugefügt werden.
+// Button soll dieser dann dem Raumschiff hinzugefügt werden. (check)
 // 3. Füge deinem Template ein Input Feld sowie einen Button hinzu. Über
 // das Input Feld soll die Anzahl der zu kaufenden Reparatursets reguliert
 // werden, mit dem Button soll der Kaufprozess abgeschlossen werden.
 // 4. Füge deinem Template einen Button hinzu. Über diesen soll immer
-// genau ein Reparaturset eingesetzt werden.
+// genau ein Reparaturset eingesetzt werden. (check)
 // 5. Erstelle eine Funktion, um Fehlermeldungen aus allen anderen
 // Funktionen generisch anzuzeigen (zu wenig Geld, keine Reparatursets
 // mehr, ...).
 // 6. Sobald das Leben des Raumschiffs auf 0 oder weniger fällt, soll das
 // deutlich erkennbar sein (z.b.: einfärben des Hintergrunds, Text
-// einblenden, etc.).
+// einblenden, etc.). (check)
 // Zusatz:
 // 1. Gestalte das Projekt mit CSS.
 // Hinweis:
@@ -53,9 +53,9 @@
 //#region VARIABLES
 const spaceShipName = "Hail Mary";
 
-let spaceShipCondition = 100;
+let spaceShipCondition = 1000;
 
-let money = 100;
+let money = 220;
 
 const repairKitHPSmall = 30;
 let costOfrepairKitSmall = 40;
@@ -82,7 +82,17 @@ const gameOverMsg = document.getElementById("id_game_over_msg");
 
 let inputAttackValue = document.getElementById("input_add_damadge");
 
-//#endregion
+let inputKitQtyRef = document.getElementById("input_kit_qty");
+let kit_qty = Number(inputKitQtyRef.value);
+// console.log(kit_qty);
+
+// function logKitsToBuy() {
+//     console.dir(inputKitQtyRef);
+//     console.log(kit_qty);
+// }
+// #endregion
+
+const cockpitMsgDisplay = document.getElementById("id_status_msg_diplay");
 
 
 //#region FUNCTIONS
@@ -115,17 +125,19 @@ function renderStatus() {
 
 function checkSpaceShipCondition() {
     if (spaceShipCondition > 20) {
+        // evtl. Prioritäten einfügen und abfragen oder nach einander zeigen lassen 
+        // showSuccesMsg(`It´s all right Condition is ${spaceShipCondition} %`);
         console.log(`It´s all right Condition is ${spaceShipCondition} %`);
     } else if (spaceShipCondition <= 20 && spaceShipCondition > 0) {
+        showErrorMsg(`${spaceShipName} Condition is ${spaceShipCondition} %\n! REPAIR your SHIP !`);
         console.log(`${spaceShipName} Condition is ${spaceShipCondition} %\n! REPAIR your SHIP !`);
     } else {
+        showErrorMsg("GAME OVER");
         showGameOver()
         console.log("GAME OVER");
     }
 
 }
-
-
 
 function gotDamadge(value) {
     spaceShipCondition -= value;
@@ -137,6 +149,7 @@ function gotDamadge(value) {
         return
     }
     if (inputAttackValue.value > 0) {
+        showErrorMsg(`You lost ${damadgeValue} % HP`);
         console.log(`You lost ${damadgeValue} % HP`);
         checkSpaceShipCondition()
     }
@@ -150,7 +163,8 @@ function showHit() {
         hitVisualizer.classList.add("hit_animation");
         setTimeout(removeAnimation, 300, "hit_animation")
     } else {
-        return console.log("NO Attack Value setted");
+        showErrorMsg("NO Attack Value setted");
+        // return console.log("NO Attack Value setted");
     }
 
 }
@@ -169,7 +183,6 @@ function removeAnimation(animationName) {
     // console.log(animationName);
     hitVisualizer.classList.remove(animationName);
 }
-
 
 function changeKindOfDamadge(damadgePoints) {
     damadgeValue = damadgePoints;
@@ -196,62 +209,97 @@ function showMoney() {
     console.log(`you have ${money} $`);
 }
 
-function buyRepairKitSmall() {
-    if (money >= 40 && amountOfRepairKitsSmall === 0) {
-        money -= 40;
-        amountOfRepairKitsSmall += 1;
-        console.log(`Transaction succeed, you have bought ${amountOfRepairKitsSmall} Small Repair Kit`);
-        showMoney()
-    } else if (amountOfRepairKitsSmall >= 1) {
-        console.log(`You already have ${amountOfRepairKitsSmall} Small Kit`);
-    } else {
-        console.log(`You don´t have enough Money for a Small Kit, you got ${money} $`);
+function buyRepairKitSmall(qty) {
+    // logKitsToBuy();
+    logKitsToBuy()
+    qty = kit_qty;
+    // console.log(qty);
+    for (let i = 1; i <= qty; i++) {
+        if (money >= 40 /* && amountOfRepairKitsSmall === 0 */) {
+            money -= 40;
+            amountOfRepairKitsSmall += 1;
+            showSuccesMsg(`Transaction succeed, you have bought ${i/* amountOfRepairKitsSmall */} Small Repair Kit/s`);
+            console.log(`Transaction succeed, you have bought ${i/* amountOfRepairKitsSmall */} Small Repair Kit/s`);
+            showMoney()
+        }
+        //  else if (amountOfRepairKitsSmall >= 1) {
+        //     console.log(`You already have ${ amountOfRepairKitsSmall } Small Kit`);
+        // } 
+        else {
+            showErrorMsg(`You don´t have enough Money for a Small Kit, you got ${money} $`);
+            // console.log(`You don´t have enough Money for a Small Kit, you got ${money} $`);
+        }
     }
 }
-function buyRepairKitLarge() {
-    if (money >= 60 && amountOfRepairKitsLarge === 0) {
-        money -= 60;
-        amountOfRepairKitsLarge += 1;
-        console.log(`Transaction succeed, you have bought ${amountOfRepairKitsLarge} Large Repair Kit`);
-        showMoney()
-    }
-    else if (amountOfRepairKitsSmall >= 1) {
-        console.log(`You already have ${amountOfRepairKitsLarge} Large Kit`);
-    } else if (money < 60 && money >= 40) {
-        console.log(`You don´t have enough Money for a Large Kit, bzt you can buy a Small one, you got ${money} $`);
+function buyRepairKitLarge(qty) {
+    logKitsToBuy()
+    qty = kit_qty;
+    for (let i = 1; i <= qty; i++) {
+        if (money >= 60 /* && amountOfRepairKitsLarge === 0 */) {
+            money -= 60;
+            amountOfRepairKitsLarge += 1;
+            showSuccesMsg(`Transaction succeed, you have bought ${i/* amountOfRepairKitsLarge */} Large Repair Kit/s`);
+            console.log(`Transaction succeed, you have bought ${i/* amountOfRepairKitsLarge */} Large Repair Kit/s`);
+            showMoney()
+        }
+        // else if (amountOfRepairKitsSmall >= 1) {
+        //     console.log(`You already have ${ amountOfRepairKitsLarge } Large Kit`);
+        // } 
+        else if (money < 60 && money >= 40) {
+            showErrorMsg(`You don´t have enough Money for a Large Kit, bzt you can buy a Small one, you got ${money} $`);
+            console.log(`You don´t have enough Money for a Large Kit, bzt you can buy a Small one, you got ${money} $`);
+        }
+        else {
+            showErrorMsg(`You don´t have enough Money to buy a Repair Kit you got ${money} $`);
+            console.log(`You don´t have enough Money to buy a Repair Kit you got ${money} $`);
+        }
     }
 }
 
+function logKitsToBuy() {
+    kit_qty = Number(inputKitQtyRef.value);
+    // console.log(kit_qty);
+    return kit_qty
+}
+
+
 function useRepairKitSmall() {
-    if (amountOfRepairKitsSmall >= 1 && spaceShipCondition !== 100) {
+    if (amountOfRepairKitsSmall >= 1 && spaceShipCondition !== 1000) {
         spaceShipCondition += repairKitHPSmall;
         amountOfRepairKitsSmall -= 1;
-        console.log(`you successfully use a Small Repair Kit\n${spaceShipName} HP: ${spaceShipCondition} %`);
+        showSuccesMsg(`you successfully use a Small Repair Kit\n${spaceShipName} HP: ${spaceShipCondition} % `);
+        console.log(`you successfully use a Small Repair Kit\n${spaceShipName} HP: ${spaceShipCondition} % `);
         showAmountOfRepairKits();
-    } else if (amountOfRepairKitsSmall === 0 && amountOfRepairKitsLarge === 0 && spaceShipCondition !== 100) {
+    } else if (amountOfRepairKitsSmall === 0 && amountOfRepairKitsLarge === 0 && spaceShipCondition !== 1000) {
+        showErrorMsg(`You got ${amountOfRepairKitsSmall} Small and ${amountOfRepairKitsLarge} Large Repair Kits!\nYou need to buy one!`);
         console.log(`You got ${amountOfRepairKitsSmall} Small and ${amountOfRepairKitsLarge} Large Repair Kits!\nYou need to buy one!`);
     } else if (amountOfRepairKitsSmall === 0 && amountOfRepairKitsLarge >= 1) {
-        console.log(`You got ${amountOfRepairKitsSmall} Small but ${amountOfRepairKitsLarge} Large Repair Kits!\nDo you want to use this instead?`);
-    } else if (spaceShipCondition === 100) {
-        console.log(`${spaceShipName} is already at ${spaceShipCondition} % HP !`);
+        showErrorMsg(`You got ${amountOfRepairKitsSmall} Small but ${amountOfRepairKitsLarge} Large Repair Kits!\nDo you want to use this instead ? `);
+        console.log(`You got ${amountOfRepairKitsSmall} Small but ${amountOfRepairKitsLarge} Large Repair Kits!\nDo you want to use this instead ? `);
+    } else if (spaceShipCondition === 1000) {
+        console.log(`${spaceShipName} is already at ${spaceShipCondition} % HP!`);
     }
 
 }
 function useRepairKitLarge() {
-    if (amountOfRepairKitsLarge >= 1 && spaceShipCondition !== 100) {
+    if (amountOfRepairKitsLarge >= 1 && spaceShipCondition !== 1000) {
         spaceShipCondition += repairKitHPLarge;
-        if (spaceShipCondition > 100) {
-            spaceShipCondition = 100;
+        if (spaceShipCondition > 1000) {
+            spaceShipCondition = 1000;
         }
         amountOfRepairKitsLarge -= 1;
-        console.log(`you successfully use a Large Repair Kit\n${spaceShipName} HP: ${spaceShipCondition} %`);
+        showSuccesMsg(`you successfully use a Large Repair Kit\n${spaceShipName} HP: ${spaceShipCondition} % `);
+        console.log(`you successfully use a Large Repair Kit\n${spaceShipName} HP: ${spaceShipCondition} % `);
         showAmountOfRepairKits();
-    } else if (amountOfRepairKitsSmall === 0 && amountOfRepairKitsLarge === 0 && spaceShipCondition !== 100) {
+    } else if (amountOfRepairKitsSmall === 0 && amountOfRepairKitsLarge === 0 && spaceShipCondition !== 1000) {
+        showErrorMsg(`You got ${amountOfRepairKitsSmall} Small and ${amountOfRepairKitsLarge} Large Repair Kits!\nYou need to buy one!`);
         console.log(`You got ${amountOfRepairKitsSmall} Small and ${amountOfRepairKitsLarge} Large Repair Kits!\nYou need to buy one!`);
     } else if (amountOfRepairKitsSmall >= 1 && amountOfRepairKitsLarge === 0) {
-        console.log(`You got ${amountOfRepairKitsSmall} Small but ${amountOfRepairKitsLarge} Large Repair Kits!\nDo you want to use this instead?`);
-    } else if (spaceShipCondition === 100) {
-        console.log(`${spaceShipName} is already at ${spaceShipCondition} % HP !`);
+        showErrorMsg(`You got ${amountOfRepairKitsSmall} Small but ${amountOfRepairKitsLarge} Large Repair Kits!\nDo you want to use this instead ? `);
+        console.log(`You got ${amountOfRepairKitsSmall} Small but ${amountOfRepairKitsLarge} Large Repair Kits!\nDo you want to use this instead ? `);
+    } else if (spaceShipCondition === 1000) {
+        showErrorMsg(`${spaceShipName} is already at ${spaceShipCondition} % HP!`);
+        console.log(`${spaceShipName} is already at ${spaceShipCondition} % HP!`);
     }
 
 }
@@ -275,7 +323,21 @@ function resetInputDamage() {
 }
 
 function renderHP() {
-    document.getElementById("shipHP").innerText = `${spaceShipCondition} %`;
+    document.getElementById("shipHP").innerText = `${spaceShipCondition} % `;
+}
+// console.dir(cockpitMsgDisplay);
+function showErrorMsg(erMsg) {
+    // console.dir(cockpitMsgDisplay);
+    cockpitMsgDisplay.textContent = erMsg;
+    cockpitMsgDisplay.style.color = "red";
+
+}
+function showSuccesMsg(positiveMsg) {
+    // console.dir(cockpitMsgDisplay);
+    cockpitMsgDisplay.textContent = positiveMsg;
+    cockpitMsgDisplay.style.color = "rgb(0 255 149)";
+
+
 }
 
 // renderStatus()

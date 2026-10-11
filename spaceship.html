@@ -46,6 +46,14 @@
                     <th class="status_heading">Large</th>
                     <td id="largeRepairKitAmount">amount</td>
                 </tr>
+                <tr>
+                    <th id="id_status_msg_tabel_row" colspan="2">Status Msg</th>
+
+                </tr>
+                <tr>
+                    <td id="id_status_msg_diplay" colspan="2">...</td>
+                </tr>
+
             </table>
         </section>
         <section class="input_section">
@@ -58,12 +66,25 @@
             </div>
 
             <div class="one_input_two_btn">
-                <button id="buy_small_repair_kit" type="button" onclick="">SMALL</button>
+                <button id="buy_small_repair_kit" type="button"
+                    onclick=" buyRepairKitSmall(), renderStatus()">SMALL</button>
                 <div id="buy_kit_qty">
-                    <label for="kit_qty">Choose how much you want to BUY</label>
-                    <input id="kit_qty" type="number">
+                    <label for="input_kit_qty">Choose how much you want to BUY</label>
+                    <input id="input_kit_qty" type="number">
                 </div>
-                <button id="buy_large_repair_kit" type="button" onclick="">LARGE</button>
+                <button id="buy_large_repair_kit" type="button"
+                    onclick="buyRepairKitLarge(), renderStatus()">LARGE</button>
+            </div>
+
+            <div id="use_repair_Kits" class="pit_stop">
+                <div id="pit_stop_text_area">
+                    <h3>PIT STOP</h3>
+                    <h4>Which Repair Kit you wanna USE</h4>
+                </div>
+                <div id="btn_wrapper">
+                    <button type="button" onclick="useRepairKitSmall(),renderStatus()">SMALL</button>
+                    <button type="button" onclick="useRepairKitLarge(),renderStatus()">LARGE</button>
+                </div>
             </div>
         </section>
 

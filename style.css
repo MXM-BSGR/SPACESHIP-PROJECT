@@ -99,24 +99,26 @@ main {
     justify-content: center;
     z-index: 1;
     background-color: rgb(59 19 97);
-    width: 100vw;
-    height: 100dvh;
+    width: 100dvw;
+
+    /* height: 100%; */
 }
 
 #id_status_section {
     display: flex;
     justify-content: center;
-    margin: 50px;
+    margin: 25px;
+    border-radius: 8px;
     background-color: peru;
     padding: 25px;
     width: 50%;
-    height: fit-content
+    height: fit-content;
 }
 
 
 
 #table_wrapper {
-    border: 1px solid black;
+    border: 5px solid black;
     background-color: purple;
     padding: 25px;
     width: 100%;
@@ -128,9 +130,6 @@ main {
 
 tbody {
     width: 100%;
-
-
-
 }
 
 tr {
@@ -144,7 +143,6 @@ td {
     width: 50%;
     text-align: start;
     font-size: 16px;
-
 }
 
 th {
@@ -169,12 +167,28 @@ td {
     font-size: 20px;
 }
 
+#id_status_msg_tabel_row{
+    text-align: center;
+}
+
+
+
+#id_status_msg_diplay{
+    outline: 2px dotted rgb(0 255 149);
+    outline-offset: -6px;
+    background-color: black;
+    padding: 10px;
+    height: 44px;
+    text-align: center;
+    color: rgb(0 255 149);
+}
+
 
 /* #region INPUT */
 .input_section {
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 20px;
     justify-content: center;
     width: 50%;
 }
@@ -195,6 +209,10 @@ text-align: center;
     margin: 0;
 }
 
+#input_add_damadge{
+    text-align: center;
+}
+
 .one_input_two_btn {
     display: flex;
     gap: 10px;
@@ -211,6 +229,56 @@ text-align: center;
 #buy_kit_qty label {
     color: rgb(0 255 149);
     ;
+}
+
+#input_kit_qty{
+    text-align: center;
+}
+
+#input_kit_qty[type="number"]::-webkit-inner-spin-button {
+    appearance: none;
+    margin: 0;
+}
+
+
+/* #endregion */
+
+/* #region PIT STOP */
+
+.pit_stop{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    padding: 20px;;
+}
+
+.pit_stop h3{
+    margin: 0;
+    text-align: center;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 56px;
+}
+
+.pit_stop h4{
+    margin: 0;
+    text-align: center;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    
+}
+
+#btn_wrapper{
+    display: flex;
+    gap: 20px;
+    justify-content: center
+}
+
+.pit_stop button{
+width: 100%;
+height: 50px;
 }
 
 /* #endregion */
