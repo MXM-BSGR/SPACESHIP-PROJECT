@@ -1,0 +1,5 @@
+# Pfade zu Schrift-Definitionen ignorieren
+css/fonts.css
+**/fonts.css
+**/fonts/*.css
+fonts.css
