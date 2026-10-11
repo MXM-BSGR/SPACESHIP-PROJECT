@@ -2,6 +2,8 @@
     --primary-font: orbitron;
     --secondary-font: 'JetBrains Mono';
     --tertiary-font:'Share Tech Mono';
+    --display-bg-color: rgb(16 255 255 / 35.8%);
+    --display-color: rgb(0 255 149);
 }
 
 *{
@@ -47,6 +49,7 @@ main{
     align-items: center;
     justify-content: center;
     opacity: 0;
+    z-index: 3;
     box-shadow: 10px 10px 200px rgb(255 0 0) inset;
     background-color: black;
     width: 100vw;
@@ -123,7 +126,7 @@ h3 {
 }
 
 .hit_animation {
-    animation: hit_animation 111ms linear;
+    animation: hit_animation 150ms linear;
 }
 
 /* #endregion */
@@ -203,11 +206,51 @@ text-align: start;
 width: 100%;
 text-align: center;
 font-family: var(--secondary-font);
-font-size: 20px;
+font-size: 18px;
 font-weight: bold;
 }
 
+/* #region INPUT FIELDS */
 
+input{
+    border-style:none;
+    border-radius: 5px;
+
+    /* border-color:var(--display-color); */
+    background-color: var(--display-bg-color);
+    padding-inline: 4px;
+    text-align: center;
+    color:var(--display-color);
+    font-family: var(--tertiary-font);
+    font-size: 20px;
+   
+    
+}
+
+input:focus {
+    outline: var(--display-color) auto 1px;
+}
+
+input::placeholder{
+    text-shadow: 0 0 1px white;
+    color: var(--display-bg-color);
+    font-size: 20px;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+    appearance: none;
+    margin: 0;
+}
+
+button{
+    border-style:none;
+    border-radius: 5px;
+    color: darkcyan;
+    font-family: var(--tertiary-font);
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+}
 
 /* #region ATTACK */
 
@@ -215,8 +258,9 @@ font-weight: bold;
     display: flex;
     position: absolute;
     inset: 0;
-    top: 700px;
+    top: 730px;
     flex-direction: column;
+    gap: 10px;
     margin: auto;
 
     /* align-items: center; */
@@ -224,9 +268,69 @@ font-weight: bold;
     height: fit-content;
 }
 
+input[type="number"]::-webkit-inner-spin-button {
+    appearance: none;
+    margin: 0;
+}
+
 .attack_execute_btn{
     width: 100%;
+    color:red;
 }
 
 /* #endregion
  */
+
+ /* #region BUY REPAIR KITS */
+
+ .one_input_two_btn{
+display: flex;
+position: absolute;
+inset: 0;
+translate: 0 270px;
+flex-direction: column-reverse;
+gap: 10px;
+align-items: center;
+margin: auto;
+
+/* transform: rotate(-22deg); */
+width: fit-content;
+height: fit-content;
+ }
+
+ .one_input_two_btn button{
+width: 50%;
+ }
+
+ .choose_size{
+    display: flex;
+    flex-direction: row-reverse;
+        gap: 10px;
+    justify-content: center; 
+}
+
+
+
+ /* #endregion */
+
+ /* #region USE REPAIR KIT */
+
+#btn_wrapper{
+    display: flex;
+    position: absolute;
+    inset: 0;
+gap: 10px;
+transform: rotate(29.5deg);
+margin: auto;
+    width: fit-content;
+    height: fit-content;
+translate: 360px 280px;
+
+
+}
+
+
+
+ /* #endregion */
+
+ /* #endregion */

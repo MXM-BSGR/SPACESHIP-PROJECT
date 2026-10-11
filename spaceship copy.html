@@ -72,7 +72,7 @@
 
                 <div class="msg_wrapper">
 
-                    <p id="id_status_msg_diplay" colspan="2">just 5 tradfa </p>
+                    <p id="id_status_msg_diplay" colspan="2"> ..: ...:... ...:... ...:... :.. </p>
 
                 </div>
             </div>
@@ -82,7 +82,7 @@
         </section>
         <section class="input_section">
             <div class="one_input_one_btn">
-                <input id="input_add_damadge" type="number" placeholder="set your Attack Value">
+                <input id="input_add_damadge" type="number" placeholder="set here Attack Value">
                 <button id="attack_execute_btn" type="button"
                     onclick="attackTriggeredBySubmitBtn(), renderHP(), showHit()">!
                     ATTACK
@@ -90,25 +90,23 @@
             </div>
 
             <div class="one_input_two_btn">
-                <button id="buy_small_repair_kit" type="button"
-                    onclick=" buyRepairKitSmall(), renderStatus()">SMALL</button>
-                <div id="buy_kit_qty">
-                    <label for="input_kit_qty">Choose how much you want to BUY</label>
-                    <input id="input_kit_qty" type="number">
+                <input id="input_kit_qty" type="number" placeholder="type in qty here!!!">
+
+                <!-- <label for="input_kit_qty">Choose how much you want to BUY</label> -->
+                <div class="choose_size">
+                    <button id="buy_large_repair_kit" type="button" onclick="buyRepairKitLarge(), renderStatus()">
+                        BUY LARGE</button>
+                    <button id="buy_small_repair_kit" type="button" onclick=" buyRepairKitSmall(), renderStatus()"> BUY
+                        SMALL</button>
                 </div>
-                <button id="buy_large_repair_kit" type="button"
-                    onclick="buyRepairKitLarge(), renderStatus()">LARGE</button>
             </div>
 
-            <div id="use_repair_Kits" class="pit_stop">
-                <div id="pit_stop_text_area">
-                    <h3>PIT STOP</h3>
-                    <h4>Which Repair Kit you wanna USE</h4>
-                </div>
-                <div id="btn_wrapper">
-                    <button type="button" onclick="useRepairKitSmall(),renderStatus()">SMALL</button>
-                    <button type="button" onclick="useRepairKitLarge(),renderStatus()">LARGE</button>
-                </div>
+
+
+            <div id="btn_wrapper">
+                <button type="button" onclick="useRepairKitSmall(),renderStatus()"> !USE!<br> SMALL KIT</button>
+                <button type="button" onclick="useRepairKitLarge(),renderStatus()"> !USE!<br> LARGE KIT</button>
+
             </div>
         </section>
 

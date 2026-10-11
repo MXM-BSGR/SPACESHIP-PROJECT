@@ -1,4 +1,4 @@
-// console.log("test");
+1// console.log("test");
 
 // #region Arbeitsaufgaben 1
 
@@ -125,7 +125,7 @@ function renderStatus() {
         amountOfRepairKitsSmallRef.style.color = "red";
     } else {
         amountOfRepairKitsSmallRef.style.color = "rgb(0 255 149)";
-        amountOfRepairKitsSmallRef.style.backgroundColor = unset;
+        amountOfRepairKitsSmallRef.style.backgroundColor = "none";
     }
 
     amountOfRepairKitsLargeRef.innerText = `${amountOfRepairKitsLarge}`;
@@ -228,6 +228,9 @@ function buyRepairKitSmall(qty) {
     // logKitsToBuy();
     logKitsToBuy()
     qty = kit_qty;
+    if (qty === 0) {
+        showErrorMsg("type in how much you want");
+    }
     // console.log(qty);
     for (let i = 1; i <= qty; i++) {
         if (money >= 40 /* && amountOfRepairKitsSmall === 0 */) {
@@ -249,20 +252,24 @@ function buyRepairKitSmall(qty) {
 function buyRepairKitLarge(qty) {
     logKitsToBuy()
     qty = kit_qty;
+    if (qty === 0) {
+        showErrorMsg("type in how much you want");
+    }
     for (let i = 1; i <= qty; i++) {
         if (money >= 60 /* && amountOfRepairKitsLarge === 0 */) {
             money -= 60;
             amountOfRepairKitsLarge += 1;
             showSuccesMsg(`Transaction succeed, you have bought ${i/* amountOfRepairKitsLarge */} Large Repair Kit/s`);
             console.log(`Transaction succeed, you have bought ${i/* amountOfRepairKitsLarge */} Large Repair Kit/s`);
+
             showMoney()
         }
         // else if (amountOfRepairKitsSmall >= 1) {
         //     console.log(`You already have ${ amountOfRepairKitsLarge } Large Kit`);
         // } 
         else if (money < 60 && money >= 40) {
-            showErrorMsg(`You don´t have enough Money for a Large Kit, bzt you can buy a Small one, you got ${money} $`);
-            console.log(`You don´t have enough Money for a Large Kit, bzt you can buy a Small one, you got ${money} $`);
+            showErrorMsg(`You don´t have enough Money for a Large Kit, you only got ${money} $`);
+            console.log(`You don´t have enough Money for a Large Kit, you only got ${money} $`);
         }
         else {
             showErrorMsg(`You don´t have enough Money to buy a Repair Kit you got ${money} $`);
@@ -286,12 +293,13 @@ function useRepairKitSmall() {
         console.log(`you successfully use a Small Repair Kit\n${spaceShipName} HP: ${spaceShipCondition} % `);
         showAmountOfRepairKits();
     } else if (amountOfRepairKitsSmall === 0 && amountOfRepairKitsLarge === 0 && spaceShipCondition !== 1000) {
-        showErrorMsg(`You got ${amountOfRepairKitsSmall} Small and ${amountOfRepairKitsLarge} Large Repair Kits!\nYou need to buy one!`);
-        console.log(`You got ${amountOfRepairKitsSmall} Small and ${amountOfRepairKitsLarge} Large Repair Kits!\nYou need to buy one!`);
+        showErrorMsg(`You got ${amountOfRepairKitsSmall} Small and ${amountOfRepairKitsLarge} Large Repair Kits!`);
+        console.log(`You got ${amountOfRepairKitsSmall} Small and ${amountOfRepairKitsLarge} Large Repair Kits!`);
     } else if (amountOfRepairKitsSmall === 0 && amountOfRepairKitsLarge >= 1) {
-        showErrorMsg(`You got ${amountOfRepairKitsSmall} Small but ${amountOfRepairKitsLarge} Large Repair Kits!\nDo you want to use this instead ? `);
+        showErrorMsg(`You got ${amountOfRepairKitsSmall} Small but ${amountOfRepairKitsLarge} Large Repair Kits!`);
         console.log(`You got ${amountOfRepairKitsSmall} Small but ${amountOfRepairKitsLarge} Large Repair Kits!\nDo you want to use this instead ? `);
     } else if (spaceShipCondition === 1000) {
+        showErrorMsg(`${spaceShipName} is already at ${spaceShipCondition} % HP!`);
         console.log(`${spaceShipName} is already at ${spaceShipCondition} % HP!`);
     }
 
@@ -307,7 +315,7 @@ function useRepairKitLarge() {
         console.log(`you successfully use a Large Repair Kit\n${spaceShipName} HP: ${spaceShipCondition} % `);
         showAmountOfRepairKits();
     } else if (amountOfRepairKitsSmall === 0 && amountOfRepairKitsLarge === 0 && spaceShipCondition !== 1000) {
-        showErrorMsg(`You got ${amountOfRepairKitsSmall} Small and ${amountOfRepairKitsLarge} Large Repair Kits!\nYou need to buy one!`);
+        showErrorMsg(`You got ${amountOfRepairKitsSmall} Small and ${amountOfRepairKitsLarge} Large Repair Kits!`);
         console.log(`You got ${amountOfRepairKitsSmall} Small and ${amountOfRepairKitsLarge} Large Repair Kits!\nYou need to buy one!`);
     } else if (amountOfRepairKitsSmall >= 1 && amountOfRepairKitsLarge === 0) {
         showErrorMsg(`You got ${amountOfRepairKitsSmall} Small but ${amountOfRepairKitsLarge} Large Repair Kits!\nDo you want to use this instead ? `);
