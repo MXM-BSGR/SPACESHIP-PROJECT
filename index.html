@@ -7,9 +7,9 @@
     <title>SPACESHIP</title>
     <!-- <link rel="stylesheet" href="style.css"> -->
     <link rel="stylesheet" href="fonts.css">
-    <link rel="stylesheet" href="alt_style.css">
+    <link rel="stylesheet" href="cockpit.css">
 
-    <script defer src="./spaceship_copy.js"></script>
+    <script defer src="./spaceship.js"></script>
 </head>
 
 <body onload="renderStatus()">
@@ -83,8 +83,7 @@
         <section class="input_section">
             <div class="one_input_one_btn">
                 <input id="input_add_damadge" type="number" placeholder="set here Attack Value">
-                <button id="attack_execute_btn" type="button"
-                    onclick="attackTriggeredBySubmitBtn(), renderHP(), showHit()">!
+                <button id="attack_execute_btn" type="button" onclick="attackTriggeredByBtn(), renderHP(), showHit()">!
                     ATTACK
                     !</button>
             </div>

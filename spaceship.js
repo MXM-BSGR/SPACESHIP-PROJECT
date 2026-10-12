@@ -10,7 +10,7 @@ const spaceShipName = "Hail Mary";
 
 let spaceShipCondition = 1000;
 
-let money = 220;
+let money = 500;
 
 const repairKitHPSmall = 30;
 let costOfrepairKitSmall = 40;
@@ -29,7 +29,12 @@ const rocketHit = 50;
 const meteoritCollision = 80;
 const spaceShipCollision = 30;
 
-let
+
+let shieldPrice = 200;
+let amountOfShields = 0;
+
+let inventoryShip = [];
+
 
 //#endregion
 
@@ -56,6 +61,14 @@ const cockpitMsgDisplay = document.getElementById("id_status_msg_diplay");
 // ===================================================================
 // -------------------------------------------------------------------
 // ===================================================================
+
+//#region CREATE
+
+
+
+
+
+//#endregion
 
 //#region FUNCTIONS
 
@@ -114,7 +127,7 @@ function renderHP() {
 function checkSpaceShipCondition() {
     if (spaceShipCondition > 20) {
         // evtl. Prioritäten einfügen und abfragen oder nach einander zeigen lassen 
-        // showSuccesMsg(`It´s all right Condition is ${spaceShipCondition} %`);
+        // showSuccessMsg(`It´s all right Condition is ${spaceShipCondition} %`);
         console.log(`It´s all right Condition is ${spaceShipCondition} %`);
     } else if (spaceShipCondition <= 20 && spaceShipCondition > 0) {
         showErrorMsg(`${spaceShipName} Condition is ${spaceShipCondition} %\n! REPAIR your SHIP !`);
@@ -164,11 +177,12 @@ function gotDamadge(value) {
 
 }
 // ------------------------------------------------------------------
-function attackTriggeredBySubmitBtn(input) {
+function attackTriggeredByBtn(input) {
     input = document.getElementById("input_add_damadge").value;
     damadgeValue = input;
+    damadgeByActivShield();
 
-    gotDamadge(input);
+    gotDamadge(damadgeValue);
     setTimeout(resetInputDamage, 100);
     // document.getElementById("input_add_damadge").value = "";
     // console.log(spaceShipCondition);
@@ -177,6 +191,14 @@ function attackTriggeredBySubmitBtn(input) {
 // ------------------------------------------------------------------
 function resetInputDamage() {
     document.getElementById("input_add_damadge").value = "";
+}
+
+// buyShield();
+damadgeByActivShield();
+function damadgeByActivShield() {
+    if (inventoryShip.includes("shield")) {
+        damadgeValue /= 2;
+    }
 }
 // ------------------------------------------------------------------
 // function changeKindOfDamadge(damadgePoints) {
@@ -255,7 +277,7 @@ function buyRepairKitSmall(qty) {
         if (money >= 40 /* && amountOfRepairKitsSmall === 0 */) {
             money -= 40;
             amountOfRepairKitsSmall += 1;
-            showSuccesMsg(`Transaction succeed, you have bought ${i/* amountOfRepairKitsSmall */} Small Repair Kit/s`);
+            showSuccessMsg(`Transaction succeed, you have bought ${i/* amountOfRepairKitsSmall */} Small Repair Kit/s`);
             console.log(`Transaction succeed, you have bought ${i/* amountOfRepairKitsSmall */} Small Repair Kit/s`);
             showMoney()
         }
@@ -279,7 +301,7 @@ function buyRepairKitLarge(qty) {
         if (money >= 60 /* && amountOfRepairKitsLarge === 0 */) {
             money -= 60;
             amountOfRepairKitsLarge += 1;
-            showSuccesMsg(`Transaction succeed, you have bought ${i/* amountOfRepairKitsLarge */} Large Repair Kit/s`);
+            showSuccessMsg(`Transaction succeed, you have bought ${i/* amountOfRepairKitsLarge */} Large Repair Kit/s`);
             console.log(`Transaction succeed, you have bought ${i/* amountOfRepairKitsLarge */} Large Repair Kit/s`);
 
             showMoney()
@@ -297,6 +319,22 @@ function buyRepairKitLarge(qty) {
         }
     }
 }
+
+// ------------------------------------------------------------------
+// buyShield()
+
+function buyShield() {
+    if (money >= 200) {
+        money -= 200;
+        amountOfShields += 1;
+        showSuccessMsg(`!You just bought ${amountOfShields} Shield/s!`);
+        inventoryShip.push("shield");
+        console.log(inventoryShip);
+    }
+}
+
+// ------------------------------------------------------------------
+
 //#endregion
 
 // ===================================================================
@@ -307,7 +345,7 @@ function useRepairKitSmall() {
     if (amountOfRepairKitsSmall >= 1 && spaceShipCondition !== 1000) {
         spaceShipCondition += repairKitHPSmall;
         amountOfRepairKitsSmall -= 1;
-        showSuccesMsg(`you successfully use a Small Repair Kit\n${spaceShipName} HP: ${spaceShipCondition} % `);
+        showSuccessMsg(`you successfully use a Small Repair Kit\n${spaceShipName} HP: ${spaceShipCondition} % `);
         console.log(`you successfully use a Small Repair Kit\n${spaceShipName} HP: ${spaceShipCondition} % `);
         showAmountOfRepairKits();
     } else if (amountOfRepairKitsSmall === 0 && amountOfRepairKitsLarge === 0 && spaceShipCondition !== 1000) {
@@ -331,7 +369,7 @@ function useRepairKitLarge() {
             spaceShipCondition = 1000;
         }
         amountOfRepairKitsLarge -= 1;
-        showSuccesMsg(`you successfully use a Large Repair Kit\n${spaceShipName} HP: ${spaceShipCondition} % `);
+        showSuccessMsg(`you successfully use a Large Repair Kit\n${spaceShipName} HP: ${spaceShipCondition} % `);
         console.log(`you successfully use a Large Repair Kit\n${spaceShipName} HP: ${spaceShipCondition} % `);
         showAmountOfRepairKits();
     } else if (amountOfRepairKitsSmall === 0 && amountOfRepairKitsLarge === 0 && spaceShipCondition !== 1000) {
@@ -363,7 +401,7 @@ function showErrorMsg(erMsg) {
 
 }
 
-function showSuccesMsg(positiveMsg) {
+function showSuccessMsg(positiveMsg) {
     // console.dir(cockpitMsgDisplay);
     cockpitMsgDisplay.textContent = positiveMsg;
     cockpitMsgDisplay.style.color = "rgb(0 255 149)";

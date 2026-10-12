@@ -48,11 +48,11 @@
 //#region Arbeitsaufgabe 3
 
 # Arbeitsblatt Spaceship III
-<!-- // 1. Füge deinem Skript ein Inventar hinzu. Nutze dafür ein Array.
-// 2. Ermögliche das kaufen eines Schildes.
-// a. Ein Schild wird beim Kauf dem Inventar hinzugefügt.
+1. Füge deinem Skript ein Inventar hinzu. Nutze dafür ein Array.  **check**
+// 2. Ermögliche das kaufen eines Schildes. **check**
+// a. Ein Schild wird beim Kauf dem Inventar hinzugefügt. **check**
 // b. Sobald dem Raumschiff Schaden zugefügt wird und ein Schild im
-// Inventar ist, soll der erlittene Schaden um 50% verringert werden.
+// Inventar ist, soll der erlittene Schaden um 50% verringert werden.**check**
 // 3. Entferne die Variable für die Reparaturkits! Sie sollen ebenfalls über das
 // Inventar verwaltet werden.
 // a. Beim Kauf sollen X Reparatursets dem Inventar hinzugefügt
