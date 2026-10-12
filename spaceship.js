@@ -1,54 +1,9 @@
 1// console.log("test");
 
-// #region Arbeitsaufgaben 1
 
-// 1. Erstelle ein leeres Projekt in VSCode (check)
-// a. Lege die Dateien index.html und script.js an (check)
-// b. Verlinke die script.js Datei im HTML (check)
-// 2. Erstelle ein Repository auf GitHub und verknüpfe es mit deinem Projekt! (check)
-// 3. Überlege dir sinnvolle Variablennamen für die folgenden Werte und
-// füge sie deinem Script hinzu!
-// a. Name des Raumschiffs(check)
-// b. Panzerung/Leben des Raumschiffs (hier nur eine Variable!)(check)
-// c. Währung(check)
-// d. Reparatursets für das Raumschiff(check)
-// 4. Setze die folgenden Funktionen um!
-// a. Status des Raumschiffs anzeigen(check)
-// b. Reparaturset benutzen(check)
-// c. Reparaturset kaufen(check)
-// d. Schaden nehmen (check)
-// Hinweis:
-// Leben, Preise, Schadenshöhe usw. sind frei wählbar
-
-//#endregion
-
-// #region Arbeitsaufgaben 2
-
-// Arbeitsblatt Spaceship II
-// 1. Ändere die Funktion getStatus wie folgt ab:
-// a. Benenne sie in renderStatus um (check)
-// b. Rendere die Statuswerte des Raumschiffs in einer Tabelle im
-// HTML (check)
-// 2. Füge deinem Template ein Input Feld sowie einen Button hinzu. Über
-// das Input Feld soll die Höhe des Schadens reguliert werden, mit dem
-// Button soll dieser dann dem Raumschiff hinzugefügt werden. (check)
-// 3. Füge deinem Template ein Input Feld sowie einen Button hinzu. Über
-// das Input Feld soll die Anzahl der zu kaufenden Reparatursets reguliert
-// werden, mit dem Button soll der Kaufprozess abgeschlossen werden.
-// 4. Füge deinem Template einen Button hinzu. Über diesen soll immer
-// genau ein Reparaturset eingesetzt werden. (check)
-// 5. Erstelle eine Funktion, um Fehlermeldungen aus allen anderen
-// Funktionen generisch anzuzeigen (zu wenig Geld, keine Reparatursets
-// mehr, ...).
-// 6. Sobald das Leben des Raumschiffs auf 0 oder weniger fällt, soll das
-// deutlich erkennbar sein (z.b.: einfärben des Hintergrunds, Text
-// einblenden, etc.). (check)
-// Zusatz:
-// 1. Gestalte das Projekt mit CSS.
-// Hinweis:
-// Leben, Preise, Schadenshöhe usw. sind frei wählbar.
-
-//#endregion
+// ===================================================================
+// -------------------------------------------------------------------
+// ===================================================================
 
 //#region VARIABLES
 const spaceShipName = "Hail Mary";
@@ -74,7 +29,11 @@ const rocketHit = 50;
 const meteoritCollision = 80;
 const spaceShipCollision = 30;
 
+let
+
 //#endregion
+
+// ===================================================================
 
 //#region GLOBAL FUNCTION VARIABLES
 const hitVisualizer = document.getElementById("id_game_visualizer_hit");
@@ -89,23 +48,35 @@ let kit_qty = Number(inputKitQtyRef.value);
 const amountOfRepairKitsSmallRef = document.getElementById("smallRepaiKitAmount");
 const amountOfRepairKitsLargeRef = document.getElementById("largeRepairKitAmount");
 // console.log(kit_qty);
-
-// function logKitsToBuy() {
-//     console.dir(inputKitQtyRef);
-//     console.log(kit_qty);
-// }
-// #endregion
-
 const cockpitMsgDisplay = document.getElementById("id_status_msg_diplay");
 
 
+// #endregion
+
+// ===================================================================
+// -------------------------------------------------------------------
+// ===================================================================
+
 //#region FUNCTIONS
+
+// ===================================================================
+
+//#region  SORT
+function earnMoney(howMuch) {
+    money += howMuch;
+}
+//#endregion
+
+// ===================================================================
+
+// #region STATUS EVENTS
 
 function showAmountOfRepairKits() {
     // let amountOfRepairKits = console.log("Small Repair Kit: " + amountOfRepairKitsSmall); console.log("Large Repair Kit: " + amountOfRepairKitsLarge);
     return console.log(`Small Repair Kit: ${amountOfRepairKitsSmall}\nLarge Repair Kit: ${amountOfRepairKitsLarge}`);
-
 }
+
+// ------------------------------------------------------------------
 function renderStatus() {
     console.log(spaceShipName);
     // console.log(spaceShipCondition + " " + "%");
@@ -135,9 +106,11 @@ function renderStatus() {
         amountOfRepairKitsLargeRef.style.color = "rgb(0 255 149)";
     }
 }
-
-
-
+// ------------------------------------------------------------------
+function renderHP() {
+    document.getElementById("shipHP").innerText = `${spaceShipCondition} % `;
+}
+// ------------------------------------------------------------------
 function checkSpaceShipCondition() {
     if (spaceShipCondition > 20) {
         // evtl. Prioritäten einfügen und abfragen oder nach einander zeigen lassen 
@@ -153,7 +126,27 @@ function checkSpaceShipCondition() {
     }
 
 }
+// ------------------------------------------------------------------
+function showMoney() {
+    console.log(`you have ${money} $`);
+}
+// ------------------------------------------------------------------
+function logKitsToBuy() {
+    kit_qty = Number(inputKitQtyRef.value);
+    // console.log(kit_qty);
+    return kit_qty
+}
+// ------------------------------------------------------------------
+// function logKitsToBuy() {
+//     console.dir(inputKitQtyRef);
+//     console.log(kit_qty);
+// }
 
+//#endregion
+
+// ===================================================================
+
+// #region ATTACK
 function gotDamadge(value) {
     spaceShipCondition -= value;
     // showdamadgeType(value);
@@ -168,8 +161,50 @@ function gotDamadge(value) {
         console.log(`You lost ${damadgeValue} % HP`);
         checkSpaceShipCondition()
     }
-}
 
+}
+// ------------------------------------------------------------------
+function attackTriggeredBySubmitBtn(input) {
+    input = document.getElementById("input_add_damadge").value;
+    damadgeValue = input;
+
+    gotDamadge(input);
+    setTimeout(resetInputDamage, 100);
+    // document.getElementById("input_add_damadge").value = "";
+    // console.log(spaceShipCondition);
+
+}
+// ------------------------------------------------------------------
+function resetInputDamage() {
+    document.getElementById("input_add_damadge").value = "";
+}
+// ------------------------------------------------------------------
+// function changeKindOfDamadge(damadgePoints) {
+//     damadgeValue = damadgePoints;
+// }
+// ------------------------------------------------------------------
+// function showdamadgeType(hitType) {
+//     if (hitType === 10) {
+//         hitType = "Laser";
+//     }
+//     else if (hitType === 50) {
+//         hitType = "Rocket";
+//     }
+//     else if (hitType === 80) {
+//         hitType = "Meterorit";
+//     }
+//     else {
+//         hitType = "another Ship";
+//     }
+//     // console.log(hitType);
+//     damadgeType = hitType;
+// }
+// ------------------------------------------------------------------
+//#endregion
+
+// ===================================================================
+
+// #region UI EVENTS
 function showHit() {
     // console.dir(inputAttackValue);
     // console.log(inputAttackValue.value);
@@ -183,47 +218,31 @@ function showHit() {
     }
 
 }
-
-function showGameOver() {
-    gameOverMsg.classList.add("game_over_animation");
-    gameOverMsg.style.pointerEvents = "all";
-
-}
-
-function restart() {
-    location.reload();
-}
+// ------------------------------------------------------------------
 
 function removeAnimation(animationName) {
     // console.log(animationName);
     hitVisualizer.classList.remove(animationName);
 }
+// ------------------------------------------------------------------
 
-function changeKindOfDamadge(damadgePoints) {
-    damadgeValue = damadgePoints;
+function showGameOver() {
+    gameOverMsg.classList.add("game_over_animation");
+    gameOverMsg.style.pointerEvents = "all";
 }
+// ------------------------------------------------------------------
 
-function showdamadgeType(hitType) {
-    if (hitType === 10) {
-        hitType = "Laser";
-    }
-    else if (hitType === 50) {
-        hitType = "Rocket";
-    }
-    else if (hitType === 80) {
-        hitType = "Meterorit";
-    }
-    else {
-        hitType = "another Ship";
-    }
-    // console.log(hitType);
-    damadgeType = hitType;
+function restart() {
+    location.reload();
+
 }
+// ------------------------------------------------------------------
 
-function showMoney() {
-    console.log(`you have ${money} $`);
-}
+// #endregion
 
+// ===================================================================
+
+// #region STORE
 function buyRepairKitSmall(qty) {
     // logKitsToBuy();
     logKitsToBuy()
@@ -249,6 +268,7 @@ function buyRepairKitSmall(qty) {
         }
     }
 }
+
 function buyRepairKitLarge(qty) {
     logKitsToBuy()
     qty = kit_qty;
@@ -277,13 +297,11 @@ function buyRepairKitLarge(qty) {
         }
     }
 }
+//#endregion
 
-function logKitsToBuy() {
-    kit_qty = Number(inputKitQtyRef.value);
-    // console.log(kit_qty);
-    return kit_qty
-}
+// ===================================================================
 
+// #region USE ITEMS
 
 function useRepairKitSmall() {
     if (amountOfRepairKitsSmall >= 1 && spaceShipCondition !== 1000) {
@@ -304,6 +322,8 @@ function useRepairKitSmall() {
     }
 
 }
+// ------------------------------------------------------------------
+
 function useRepairKitLarge() {
     if (amountOfRepairKitsLarge >= 1 && spaceShipCondition !== 1000) {
         spaceShipCondition += repairKitHPLarge;
@@ -318,7 +338,7 @@ function useRepairKitLarge() {
         showErrorMsg(`You got ${amountOfRepairKitsSmall} Small and ${amountOfRepairKitsLarge} Large Repair Kits!`);
         console.log(`You got ${amountOfRepairKitsSmall} Small and ${amountOfRepairKitsLarge} Large Repair Kits!\nYou need to buy one!`);
     } else if (amountOfRepairKitsSmall >= 1 && amountOfRepairKitsLarge === 0) {
-        showErrorMsg(`You got ${amountOfRepairKitsSmall} Small but ${amountOfRepairKitsLarge} Large Repair Kits!\nDo you want to use this instead ? `);
+        showErrorMsg(`You got ${amountOfRepairKitsSmall} Small but ${amountOfRepairKitsLarge} Large Repair Kits!`);
         console.log(`You got ${amountOfRepairKitsSmall} Small but ${amountOfRepairKitsLarge} Large Repair Kits!\nDo you want to use this instead ? `);
     } else if (spaceShipCondition === 1000) {
         showErrorMsg(`${spaceShipName} is already at ${spaceShipCondition} % HP!`);
@@ -326,28 +346,13 @@ function useRepairKitLarge() {
     }
 
 }
+// ------------------------------------------------------------------
 
-function earnMoney(howMuch) {
-    money += howMuch;
-}
+// #endregion
 
-function attackTriggeredBySubmitBtn(input) {
-    input = document.getElementById("input_add_damadge").value;
-    damadgeValue = input;
+// ===================================================================
 
-    gotDamadge(input);
-    setTimeout(resetInputDamage, 100);
-    // document.getElementById("input_add_damadge").value = "";
-    // console.log(spaceShipCondition);
-
-}
-function resetInputDamage() {
-    document.getElementById("input_add_damadge").value = "";
-}
-
-function renderHP() {
-    document.getElementById("shipHP").innerText = `${spaceShipCondition} % `;
-}
+// #region MESSAGES
 // console.dir(cockpitMsgDisplay);
 function showErrorMsg(erMsg) {
     // console.dir(cockpitMsgDisplay);
@@ -357,6 +362,7 @@ function showErrorMsg(erMsg) {
     cockpitMsgDisplay.style.color = "rgb(255 179 0)";
 
 }
+
 function showSuccesMsg(positiveMsg) {
     // console.dir(cockpitMsgDisplay);
     cockpitMsgDisplay.textContent = positiveMsg;
@@ -364,6 +370,16 @@ function showSuccesMsg(positiveMsg) {
 
 
 }
+
+//#endregion
+
+// ===================================================================
+
+
+
+// ===================================================================
+// -------------------------------------------------------------------
+// ===================================================================
 
 // renderStatus()
 
