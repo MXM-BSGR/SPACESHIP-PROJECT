@@ -63,10 +63,15 @@ amountOfShields = 0;
 
 inventoryShip
 
+inventroyShipListRef
+
 **changed functions**
 buyRepairKitSmall()
 buyRepairKitLarge()
 
+buyShield()
+
+buyRepairKitSmall()
 
 **added functions**
 
@@ -74,3 +79,5 @@ buyShield()
 damadgeByActiveShield()
 getIndexOfKit()
 checkAvailabilityOfRepairKit()
+renderInventoryShip()
+

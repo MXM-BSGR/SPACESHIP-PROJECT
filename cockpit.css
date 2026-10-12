@@ -340,10 +340,35 @@ translate: 360px 280px;
     display: flex;
     position: absolute;
     inset: 0;
+     transform: rotate(-28deg);
     margin: auto;
-    translate: -350px 300px;
     width: fit-content;
     height: fit-content;
+    translate: -350px 300px;
+}
+
+
+
+.inventory_display{
+    display: flex;
+    position: absolute;
+    bottom:160px;
+    left: 30px;
+    flex-direction: column;
+    justify-content: center;
+    transform: rotate(-28deg);
+    background-color: var(--display-bg-color);
+    padding: 10px;
+    width:400px;
+    height: 200px;;
+
+}
+
+.inventory_display h3{
+    border-bottom: 4px solid rgb(0 255 149);
+height: fit-content;
+font-family: var(--secondary-font);
+font-size: 32px;
 }
 
 /* #endregion */

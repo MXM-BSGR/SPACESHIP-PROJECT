@@ -55,6 +55,8 @@ const amountOfRepairKitsLargeRef = document.getElementById("largeRepairKitAmount
 // console.log(kit_qty);
 const cockpitMsgDisplay = document.getElementById("id_status_msg_diplay");
 
+const inventroyShipListRef = document.getElementById("id_inventory_ship_list");
+
 
 // #endregion
 
@@ -70,7 +72,9 @@ function buyShield() {
         amountOfShields += 1;
         showSuccessMsg(`!You just bought ${amountOfShields} Shield/s!`);
         inventoryShip.push("shield");
+        renderInventoryShip("shield");
         console.log(inventoryShip);
+        renderStatus()
     }
 }
 
@@ -91,6 +95,7 @@ function buyRepairKitSmall(qty) {
             console.log(`Transaction succeed, you have bought ${i/* amountOfRepairKitsSmall */} Small Repair Kit/s`);
             showMoney()
             console.log(inventoryShip);
+            renderInventoryShip("SMALL Repair Kit");
         }
         //  else if (amountOfRepairKitsSmall >= 1) {
         //     console.log(`You already have ${ amountOfRepairKitsSmall } Small Kit`);
@@ -187,6 +192,12 @@ function renderStatus() {
     }
 }
 // ------------------------------------------------------------------
+function renderInventoryShip(item) {
+    console.log(item);
+    inventroyShipListRef.innerHTML += `<p>${item}</p>`;
+}
+
+//------------------------------------------------------------------
 function renderHP() {
     document.getElementById("shipHP").innerText = `${spaceShipCondition} % `;
 }
@@ -390,15 +401,15 @@ function restart() {
 // ------------------------------------------------------------------
 // buyShield()
 
-function buyShield() {
-    if (money >= 200) {
-        money -= 200;
-        amountOfShields += 1;
-        showSuccessMsg(`!You just bought ${amountOfShields} Shield/s!`);
-        inventoryShip.push("shield");
-        console.log(inventoryShip);
-    }
-}
+// function buyShield() {
+//     if (money >= 200) {
+//         money -= 200;
+//         amountOfShields += 1;
+//         showSuccessMsg(`!You just bought ${amountOfShields} Shield/s!`);
+//         inventoryShip.push("shield");
+//         console.log(inventoryShip);
+//     }
+// }
 
 // ------------------------------------------------------------------
 
@@ -437,6 +448,7 @@ function useRepairKitSmall() {
             showSuccessMsg(`you successfully use a Small Repair Kit\n${spaceShipName} HP: ${spaceShipCondition} % `);
             console.log(`you successfully use a Small Repair Kit\n${spaceShipName} HP: ${spaceShipCondition} % `);
             showAmountOfRepairKits();
+
         } else if (amountOfRepairKitsSmall === 0 && amountOfRepairKitsLarge === 0 && spaceShipCondition !== 1000) {
             showErrorMsg(`You got ${amountOfRepairKitsSmall} Small and ${amountOfRepairKitsLarge} Large Repair Kits!`);
             console.log(`You got ${amountOfRepairKitsSmall} Small and ${amountOfRepairKitsLarge} Large Repair Kits!`);
