@@ -64,7 +64,74 @@ const cockpitMsgDisplay = document.getElementById("id_status_msg_diplay");
 
 //#region CREATE
 
+function buyShield() {
+    if (money >= 200) {
+        money -= 200;
+        amountOfShields += 1;
+        showSuccessMsg(`!You just bought ${amountOfShields} Shield/s!`);
+        inventoryShip.push("shield");
+        console.log(inventoryShip);
+    }
+}
 
+function buyRepairKitSmall(qty) {
+    // logKitsToBuy();
+    logKitsToBuy()
+    qty = kit_qty;
+    if (qty === 0) {
+        showErrorMsg("type in how much you want");
+    }
+    // console.log(qty);
+    for (let i = 1; i <= qty; i++) {
+        if (money >= 40 /* && amountOfRepairKitsSmall === 0 */) {
+            money -= 40;
+            amountOfRepairKitsSmall += 1;
+            inventoryShip.push("SMALL Repair Kit")
+            showSuccessMsg(`Transaction succeed, you have bought ${i/* amountOfRepairKitsSmall */} Small Repair Kit/s`);
+            console.log(`Transaction succeed, you have bought ${i/* amountOfRepairKitsSmall */} Small Repair Kit/s`);
+            showMoney()
+            console.log(inventoryShip);
+        }
+        //  else if (amountOfRepairKitsSmall >= 1) {
+        //     console.log(`You already have ${ amountOfRepairKitsSmall } Small Kit`);
+        // } 
+        else {
+            showErrorMsg(`You don´t have enough Money for a Small Kit, you got ${money} $`);
+            // console.log(`You don´t have enough Money for a Small Kit, you got ${money} $`);
+        }
+    }
+}
+
+function buyRepairKitLarge(qty) {
+    logKitsToBuy()
+    qty = kit_qty;
+    if (qty === 0) {
+        showErrorMsg("type in how much you want");
+    }
+    for (let i = 1; i <= qty; i++) {
+        if (money >= 60 /* && amountOfRepairKitsLarge === 0 */) {
+            money -= 60;
+            amountOfRepairKitsLarge += 1;
+            inventoryShip.push("LARGE Repair Kit");
+            showSuccessMsg(`Transaction succeed, you have bought ${i/* amountOfRepairKitsLarge */} Large Repair Kit/s`);
+            console.log(`Transaction succeed, you have bought ${i/* amountOfRepairKitsLarge */} Large Repair Kit/s`);
+
+            showMoney()
+            console.log(inventoryShip);
+        }
+        // else if (amountOfRepairKitsSmall >= 1) {
+        //     console.log(`You already have ${ amountOfRepairKitsLarge } Large Kit`);
+        // } 
+        else if (money < 60 && money >= 40) {
+            showErrorMsg(`You don´t have enough Money for a Large Kit, you only got ${money} $`);
+            console.log(`You don´t have enough Money for a Large Kit, you only got ${money} $`);
+        }
+        else {
+            showErrorMsg(`You don´t have enough Money to buy a Repair Kit you got ${money} $`);
+            console.log(`You don´t have enough Money to buy a Repair Kit you got ${money} $`);
+        }
+    }
+}
 
 
 
@@ -265,60 +332,60 @@ function restart() {
 // ===================================================================
 
 // #region STORE
-function buyRepairKitSmall(qty) {
-    // logKitsToBuy();
-    logKitsToBuy()
-    qty = kit_qty;
-    if (qty === 0) {
-        showErrorMsg("type in how much you want");
-    }
-    // console.log(qty);
-    for (let i = 1; i <= qty; i++) {
-        if (money >= 40 /* && amountOfRepairKitsSmall === 0 */) {
-            money -= 40;
-            amountOfRepairKitsSmall += 1;
-            showSuccessMsg(`Transaction succeed, you have bought ${i/* amountOfRepairKitsSmall */} Small Repair Kit/s`);
-            console.log(`Transaction succeed, you have bought ${i/* amountOfRepairKitsSmall */} Small Repair Kit/s`);
-            showMoney()
-        }
-        //  else if (amountOfRepairKitsSmall >= 1) {
-        //     console.log(`You already have ${ amountOfRepairKitsSmall } Small Kit`);
-        // } 
-        else {
-            showErrorMsg(`You don´t have enough Money for a Small Kit, you got ${money} $`);
-            // console.log(`You don´t have enough Money for a Small Kit, you got ${money} $`);
-        }
-    }
-}
+// function buyRepairKitSmall(qty) {
+//     // logKitsToBuy();
+//     logKitsToBuy()
+//     qty = kit_qty;
+//     if (qty === 0) {
+//         showErrorMsg("type in how much you want");
+//     }
+//     // console.log(qty);
+//     for (let i = 1; i <= qty; i++) {
+//         if (money >= 40 /* && amountOfRepairKitsSmall === 0 */) {
+//             money -= 40;
+//             amountOfRepairKitsSmall += 1;
+//             showSuccessMsg(`Transaction succeed, you have bought ${i/* amountOfRepairKitsSmall */} Small Repair Kit/s`);
+//             console.log(`Transaction succeed, you have bought ${i/* amountOfRepairKitsSmall */} Small Repair Kit/s`);
+//             showMoney()
+//         }
+//         //  else if (amountOfRepairKitsSmall >= 1) {
+//         //     console.log(`You already have ${ amountOfRepairKitsSmall } Small Kit`);
+//         // } 
+//         else {
+//             showErrorMsg(`You don´t have enough Money for a Small Kit, you got ${money} $`);
+//             // console.log(`You don´t have enough Money for a Small Kit, you got ${money} $`);
+//         }
+//     }
+// }
 
-function buyRepairKitLarge(qty) {
-    logKitsToBuy()
-    qty = kit_qty;
-    if (qty === 0) {
-        showErrorMsg("type in how much you want");
-    }
-    for (let i = 1; i <= qty; i++) {
-        if (money >= 60 /* && amountOfRepairKitsLarge === 0 */) {
-            money -= 60;
-            amountOfRepairKitsLarge += 1;
-            showSuccessMsg(`Transaction succeed, you have bought ${i/* amountOfRepairKitsLarge */} Large Repair Kit/s`);
-            console.log(`Transaction succeed, you have bought ${i/* amountOfRepairKitsLarge */} Large Repair Kit/s`);
+// function buyRepairKitLarge(qty) {
+//     logKitsToBuy()
+//     qty = kit_qty;
+//     if (qty === 0) {
+//         showErrorMsg("type in how much you want");
+//     }
+//     for (let i = 1; i <= qty; i++) {
+//         if (money >= 60 /* && amountOfRepairKitsLarge === 0 */) {
+//             money -= 60;
+//             amountOfRepairKitsLarge += 1;
+//             showSuccessMsg(`Transaction succeed, you have bought ${i/* amountOfRepairKitsLarge */} Large Repair Kit/s`);
+//             console.log(`Transaction succeed, you have bought ${i/* amountOfRepairKitsLarge */} Large Repair Kit/s`);
 
-            showMoney()
-        }
-        // else if (amountOfRepairKitsSmall >= 1) {
-        //     console.log(`You already have ${ amountOfRepairKitsLarge } Large Kit`);
-        // } 
-        else if (money < 60 && money >= 40) {
-            showErrorMsg(`You don´t have enough Money for a Large Kit, you only got ${money} $`);
-            console.log(`You don´t have enough Money for a Large Kit, you only got ${money} $`);
-        }
-        else {
-            showErrorMsg(`You don´t have enough Money to buy a Repair Kit you got ${money} $`);
-            console.log(`You don´t have enough Money to buy a Repair Kit you got ${money} $`);
-        }
-    }
-}
+//             showMoney()
+//         }
+//         // else if (amountOfRepairKitsSmall >= 1) {
+//         //     console.log(`You already have ${ amountOfRepairKitsLarge } Large Kit`);
+//         // } 
+//         else if (money < 60 && money >= 40) {
+//             showErrorMsg(`You don´t have enough Money for a Large Kit, you only got ${money} $`);
+//             console.log(`You don´t have enough Money for a Large Kit, you only got ${money} $`);
+//         }
+//         else {
+//             showErrorMsg(`You don´t have enough Money to buy a Repair Kit you got ${money} $`);
+//             console.log(`You don´t have enough Money to buy a Repair Kit you got ${money} $`);
+//         }
+//     }
+// }
 
 // ------------------------------------------------------------------
 // buyShield()
@@ -341,48 +408,89 @@ function buyShield() {
 
 // #region USE ITEMS
 
-function useRepairKitSmall() {
-    if (amountOfRepairKitsSmall >= 1 && spaceShipCondition !== 1000) {
-        spaceShipCondition += repairKitHPSmall;
-        amountOfRepairKitsSmall -= 1;
-        showSuccessMsg(`you successfully use a Small Repair Kit\n${spaceShipName} HP: ${spaceShipCondition} % `);
-        console.log(`you successfully use a Small Repair Kit\n${spaceShipName} HP: ${spaceShipCondition} % `);
-        showAmountOfRepairKits();
-    } else if (amountOfRepairKitsSmall === 0 && amountOfRepairKitsLarge === 0 && spaceShipCondition !== 1000) {
-        showErrorMsg(`You got ${amountOfRepairKitsSmall} Small and ${amountOfRepairKitsLarge} Large Repair Kits!`);
-        console.log(`You got ${amountOfRepairKitsSmall} Small and ${amountOfRepairKitsLarge} Large Repair Kits!`);
-    } else if (amountOfRepairKitsSmall === 0 && amountOfRepairKitsLarge >= 1) {
-        showErrorMsg(`You got ${amountOfRepairKitsSmall} Small but ${amountOfRepairKitsLarge} Large Repair Kits!`);
-        console.log(`You got ${amountOfRepairKitsSmall} Small but ${amountOfRepairKitsLarge} Large Repair Kits!\nDo you want to use this instead ? `);
-    } else if (spaceShipCondition === 1000) {
-        showErrorMsg(`${spaceShipName} is already at ${spaceShipCondition} % HP!`);
-        console.log(`${spaceShipName} is already at ${spaceShipCondition} % HP!`);
+function getIndexOfKit(size) {
+    for (let i = 0; i < inventoryShip.length; i++) {
+        if (inventoryShip[i] === `${size} Repair Kit`) {
+            console.log(i);
+            return i;
+        }
+        // else {
+        //     showErrorMsg(`No ${size} Kit FOUND`);  // NO KITS AVAILABLE gelogt
+        // }
     }
+}
 
+function useRepairKitSmall() {
+    if (checkAvailabilityOfRepairKit("SMALL") === true) {
+        if (amountOfRepairKitsSmall >= 1 && spaceShipCondition !== 1000) {
+            if (spaceShipCondition > 1000) {
+                spaceShipCondition = 1000;
+            }
+            spaceShipCondition += repairKitHPSmall;
+            amountOfRepairKitsSmall -= 1;
+            console.log(inventoryShip);
+            // let i = getIndexOfKit("SMALL");
+            // console.log(i);
+            // inventoryShip.splice(i, 1);
+            inventoryShip.splice(getIndexOfKit("SMALL"), 1);
+            // console.log(inventoryShip);
+            showSuccessMsg(`you successfully use a Small Repair Kit\n${spaceShipName} HP: ${spaceShipCondition} % `);
+            console.log(`you successfully use a Small Repair Kit\n${spaceShipName} HP: ${spaceShipCondition} % `);
+            showAmountOfRepairKits();
+        } else if (amountOfRepairKitsSmall === 0 && amountOfRepairKitsLarge === 0 && spaceShipCondition !== 1000) {
+            showErrorMsg(`You got ${amountOfRepairKitsSmall} Small and ${amountOfRepairKitsLarge} Large Repair Kits!`);
+            console.log(`You got ${amountOfRepairKitsSmall} Small and ${amountOfRepairKitsLarge} Large Repair Kits!`);
+        } else if (amountOfRepairKitsSmall === 0 && amountOfRepairKitsLarge >= 1) {
+            showErrorMsg(`You got ${amountOfRepairKitsSmall} Small but ${amountOfRepairKitsLarge} Large Repair Kits!`);
+            console.log(`You got ${amountOfRepairKitsSmall} Small but ${amountOfRepairKitsLarge} Large Repair Kits!\nDo you want to use this instead ? `);
+        } else if (spaceShipCondition === 1000) {
+            showErrorMsg(`${spaceShipName} is already at ${spaceShipCondition} % HP!`);
+            console.log(`${spaceShipName} is already at ${spaceShipCondition} % HP!`);
+        }
+
+    }
+}
+// checkAvailabilityOfRepairKit("SMALL");
+
+function checkAvailabilityOfRepairKit(size) {
+    if (inventoryShip.includes(`${size} Repair Kit`)) {
+        return true;
+    } else {
+        showErrorMsg(`No ${size} Kits available`);
+        return false
+    }
 }
 // ------------------------------------------------------------------
 
 function useRepairKitLarge() {
-    if (amountOfRepairKitsLarge >= 1 && spaceShipCondition !== 1000) {
-        spaceShipCondition += repairKitHPLarge;
-        if (spaceShipCondition > 1000) {
-            spaceShipCondition = 1000;
+    if (checkAvailabilityOfRepairKit("LARGE") === true) {
+        if (amountOfRepairKitsLarge >= 1 && spaceShipCondition !== 1000) {
+            spaceShipCondition += repairKitHPLarge;
+            if (spaceShipCondition > 1000) {
+                spaceShipCondition = 1000;
+            }
+            amountOfRepairKitsLarge -= 1;
+            console.log(inventoryShip);
+            // let i = getIndexOfKit("SMALL");
+            // console.log(i);
+            // inventoryShip.splice(i, 1);
+            inventoryShip.splice(getIndexOfKit("LARGE"), 1);
+            console.log(inventoryShip);
+            showSuccessMsg(`you successfully use a Large Repair Kit\n${spaceShipName} HP: ${spaceShipCondition} % `);
+            console.log(`you successfully use a Large Repair Kit\n${spaceShipName} HP: ${spaceShipCondition} % `);
+            showAmountOfRepairKits();
+        } else if (amountOfRepairKitsSmall === 0 && amountOfRepairKitsLarge === 0 && spaceShipCondition !== 1000) {
+            showErrorMsg(`You got ${amountOfRepairKitsSmall} Small and ${amountOfRepairKitsLarge} Large Repair Kits!`);
+            console.log(`You got ${amountOfRepairKitsSmall} Small and ${amountOfRepairKitsLarge} Large Repair Kits!\nYou need to buy one!`);
+        } else if (amountOfRepairKitsSmall >= 1 && amountOfRepairKitsLarge === 0) {
+            showErrorMsg(`You got ${amountOfRepairKitsSmall} Small but ${amountOfRepairKitsLarge} Large Repair Kits!`);
+            console.log(`You got ${amountOfRepairKitsSmall} Small but ${amountOfRepairKitsLarge} Large Repair Kits!\nDo you want to use this instead ? `);
+        } else if (spaceShipCondition === 1000) {
+            showErrorMsg(`${spaceShipName} is already at ${spaceShipCondition} % HP!`);
+            console.log(`${spaceShipName} is already at ${spaceShipCondition} % HP!`);
         }
-        amountOfRepairKitsLarge -= 1;
-        showSuccessMsg(`you successfully use a Large Repair Kit\n${spaceShipName} HP: ${spaceShipCondition} % `);
-        console.log(`you successfully use a Large Repair Kit\n${spaceShipName} HP: ${spaceShipCondition} % `);
-        showAmountOfRepairKits();
-    } else if (amountOfRepairKitsSmall === 0 && amountOfRepairKitsLarge === 0 && spaceShipCondition !== 1000) {
-        showErrorMsg(`You got ${amountOfRepairKitsSmall} Small and ${amountOfRepairKitsLarge} Large Repair Kits!`);
-        console.log(`You got ${amountOfRepairKitsSmall} Small and ${amountOfRepairKitsLarge} Large Repair Kits!\nYou need to buy one!`);
-    } else if (amountOfRepairKitsSmall >= 1 && amountOfRepairKitsLarge === 0) {
-        showErrorMsg(`You got ${amountOfRepairKitsSmall} Small but ${amountOfRepairKitsLarge} Large Repair Kits!`);
-        console.log(`You got ${amountOfRepairKitsSmall} Small but ${amountOfRepairKitsLarge} Large Repair Kits!\nDo you want to use this instead ? `);
-    } else if (spaceShipCondition === 1000) {
-        showErrorMsg(`${spaceShipName} is already at ${spaceShipCondition} % HP!`);
-        console.log(`${spaceShipName} is already at ${spaceShipCondition} % HP!`);
-    }
 
+    }
 }
 // ------------------------------------------------------------------
 

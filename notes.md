@@ -54,3 +54,23 @@ const cockpitMsgDisplay
 
 showSuccesMsg()
 showErrorMsg()
+
+# 12.10.26
+
+**added Variables**:
+shieldPrice = 200;
+amountOfShields = 0;
+
+inventoryShip
+
+**changed functions**
+buyRepairKitSmall()
+buyRepairKitLarge()
+
+
+**added functions**
+
+buyShield()
+damadgeByActiveShield()
+getIndexOfKit()
+checkAvailabilityOfRepairKit()
