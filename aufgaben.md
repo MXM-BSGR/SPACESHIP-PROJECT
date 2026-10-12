@@ -56,10 +56,10 @@
 // 3. Entferne die Variable für die Reparaturkits! Sie sollen ebenfalls über das
 // Inventar verwaltet werden.
 // a. Beim Kauf sollen X Reparatursets dem Inventar hinzugefügt
-// werden.
+// werden.**check**
 // b. Beim Nutzen eines solchen Kits soll überprüft werden, ob ein
 // solches Kit im Inventar ist, falls ja, kann es genutzt und
-// entsprechend aus dem Inventar entfernt werden.
+// entsprechend aus dem Inventar entfernt werden.**check**
 // 4. Erweitere die Statusfunktion um eine optische Ansicht des Inventars im
 // HTML!
 // Hinweis:

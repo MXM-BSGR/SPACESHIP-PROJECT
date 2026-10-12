@@ -334,3 +334,16 @@ translate: 360px 280px;
  /* #endregion */
 
  /* #endregion */
+
+ /* #region INVENTORY */
+.inventory_opener{
+    display: flex;
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    translate: -350px 300px;
+    width: fit-content;
+    height: fit-content;
+}
+
+/* #endregion */
