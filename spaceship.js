@@ -66,15 +66,27 @@ const inventroyShipListRef = document.getElementById("id_inventory_ship_list");
 
 //#region CREATE
 
+function showInventory() {
+    console.log(inventoryShip);
+    let content = "";
+    for (let item = 0; item < inventoryShip.length; item++) {
+        console.log(inventoryShip[item]);
+        content += `<li>${inventoryShip[item]}</li>`;
+    }
+    inventroyShipListRef.innerHTML = content;
+
+}
+
 function buyShield() {
     if (money >= 200) {
         money -= 200;
         amountOfShields += 1;
         showSuccessMsg(`!You just bought ${amountOfShields} Shield/s!`);
         inventoryShip.push("shield");
-        renderInventoryShip("shield");
+        // renderInventoryShip("shield");
         console.log(inventoryShip);
-        renderStatus()
+        renderStatus();
+        showInventory()
     }
 }
 
@@ -95,7 +107,8 @@ function buyRepairKitSmall(qty) {
             console.log(`Transaction succeed, you have bought ${i/* amountOfRepairKitsSmall */} Small Repair Kit/s`);
             showMoney()
             console.log(inventoryShip);
-            renderInventoryShip("SMALL Repair Kit");
+            // renderInventoryShip("SMALL Repair Kit");
+            showInventory();
         }
         //  else if (amountOfRepairKitsSmall >= 1) {
         //     console.log(`You already have ${ amountOfRepairKitsSmall } Small Kit`);
@@ -123,6 +136,7 @@ function buyRepairKitLarge(qty) {
 
             showMoney()
             console.log(inventoryShip);
+            showInventory();
         }
         // else if (amountOfRepairKitsSmall >= 1) {
         //     console.log(`You already have ${ amountOfRepairKitsLarge } Large Kit`);
@@ -445,6 +459,7 @@ function useRepairKitSmall() {
             // inventoryShip.splice(i, 1);
             inventoryShip.splice(getIndexOfKit("SMALL"), 1);
             // console.log(inventoryShip);
+            showInventory();
             showSuccessMsg(`you successfully use a Small Repair Kit\n${spaceShipName} HP: ${spaceShipCondition} % `);
             console.log(`you successfully use a Small Repair Kit\n${spaceShipName} HP: ${spaceShipCondition} % `);
             showAmountOfRepairKits();
@@ -488,6 +503,7 @@ function useRepairKitLarge() {
             // inventoryShip.splice(i, 1);
             inventoryShip.splice(getIndexOfKit("LARGE"), 1);
             console.log(inventoryShip);
+            showInventory();
             showSuccessMsg(`you successfully use a Large Repair Kit\n${spaceShipName} HP: ${spaceShipCondition} % `);
             console.log(`you successfully use a Large Repair Kit\n${spaceShipName} HP: ${spaceShipCondition} % `);
             showAmountOfRepairKits();
