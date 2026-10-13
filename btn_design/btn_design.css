@@ -35,23 +35,55 @@ body{
     margin: 0;
     border-width: 2px;
     border-style: none;
-    border-style: outset;
+    border-style:groove;
     border-radius: 5px;
-    border-color: buttonborder;
+    border-color: aquamarine;
     border-image: none;
-    background-color: buttonface;
+    box-shadow: 2px 2px 0 0 5px 5px white;
+    background-color: rgb(25 143 82);
     padding-block: 1px;
     padding-inline: 6px;
     text-align: center;
     text-indent: 0;
     text-transform: none;
-    text-shadow: none;
+
+    /* text-shadow: 3px 3px 5px azure; */
     line-height: normal;
     word-spacing: normal;
-    color: darkcyan;
+    color: aqua;
     font-family: var(--tertiary-font);
     font-size: 20px;
     font-weight: 700;
     cursor: pointer;
     cursor: default;
 }
+
+.btn:hover{
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 0;
+    border-width: 2px;
+    border-style: none;
+    border-style:inset;
+    border-radius: 5px;
+    border-color: rgb(1 190 127);
+    border-image: none;
+    box-shadow: 1px 1px 5px 5px white;
+    box-shadow: -2px -2px 10px 5px rgb(1 190 127);
+    background-color: rgb(15 209 109);
+    padding-block: 1px;
+    padding-inline: 6px;
+    text-align: center;
+    text-indent: 0;
+    text-transform: none;
+    text-shadow: 0 0  5px azure;
+    line-height: normal;
+    word-spacing: normal;
+    color: rgb(200 249 249);
+    font-family: var(--tertiary-font);
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    cursor: default;
+}
+
