@@ -82,11 +82,12 @@
         </section>
 
         <section class="inventory_ship">
-            <button id="id_open_inventory" class="inventory_opener">Show<br>Inventory</button>
+            <button id="id_open_inventory" class="inventory_opener"
+                onclick="showInventoryDisplay()">Show<br>Inventory</button>
             <button id="id_buy_shield_btn" class="buy_shield_btn btn" onclick="buyShield()">BUY<br>SHIELD</button>
 
             <div class="perspective_left">
-                <div class="inventory_display">
+                <div id="id_inventory_display" class="inventory_display">
                     <h3>..:.|Inventory|.:..</h3>
                     <ul id="id_inventory_ship_list">
 

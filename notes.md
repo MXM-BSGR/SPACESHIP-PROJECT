@@ -81,3 +81,17 @@ getIndexOfKit()
 checkAvailabilityOfRepairKit()
 renderInventoryShip()
 
+# 13.10
+
+<!-- indexOf() verwenden -->
+
+**added Variables**:
+const InventoryDisplayRef
+
+**changed functions**
+
+
+**added functions**
+
+showInventory()
+

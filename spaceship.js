@@ -57,6 +57,8 @@ const cockpitMsgDisplay = document.getElementById("id_status_msg_diplay");
 
 const inventroyShipListRef = document.getElementById("id_inventory_ship_list");
 
+const inventoryDisplayRef = document.getElementById("id_inventory_display");
+
 
 // #endregion
 
@@ -65,6 +67,10 @@ const inventroyShipListRef = document.getElementById("id_inventory_ship_list");
 // ===================================================================
 
 //#region CREATE
+
+function showInventoryDisplay() {
+    inventoryDisplayRef.classList.toggle("display_appear");
+}
 
 function showInventory() {
     console.log(inventoryShip);
