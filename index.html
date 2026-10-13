@@ -82,7 +82,7 @@
         </section>
 
         <section class="inventory_ship">
-            <button id="id_open_inventory" class="inventory_opener"
+            <button id="id_open_inventory" class="inventory_opener_btn btn"
                 onclick="showInventoryDisplay()">Show<br>Inventory</button>
             <button id="id_buy_shield_btn" class="buy_shield_btn btn" onclick="buyShield()">BUY<br>SHIELD</button>
 
@@ -101,7 +101,9 @@
         <section class="input_section">
             <div class="one_input_one_btn">
                 <input id="input_add_damadge" type="number" placeholder="set here Attack Value">
-                <button id="attack_execute_btn" type="button" onclick="attackTriggeredByBtn(), renderHP(), showHit()">!
+
+                <button id="attack_execute_btn btn" class="attack_execute_btn btn" type="button"
+                    onclick="attackTriggeredByBtn(), renderHP(), showHit()">!
                     ATTACK
                     !</button>
             </div>
@@ -111,9 +113,11 @@
 
                 <!-- <label for="input_kit_qty">Choose how much you want to BUY</label> -->
                 <div class="choose_size">
-                    <button id="buy_large_repair_kit" type="button" onclick="buyRepairKitLarge(), renderStatus()">
+                    <button id="buy_large_repair_kit" class="buy_repair_kit_large_btn btn" type="button"
+                        onclick="buyRepairKitLarge(), renderStatus()">
                         BUY LARGE</button>
-                    <button id="buy_small_repair_kit" type="button" onclick=" buyRepairKitSmall(), renderStatus()"> BUY
+                    <button id="buy_small_repair_kit" class="buy_repair_kit_small_btn btn" type="button"
+                        onclick=" buyRepairKitSmall(), renderStatus()"> BUY
                         SMALL</button>
                 </div>
             </div>
@@ -121,8 +125,10 @@
 
 
             <div id="btn_wrapper">
-                <button type="button" onclick="useRepairKitSmall(),renderStatus()"> !USE!<br> SMALL KIT</button>
-                <button type="button" onclick="useRepairKitLarge(),renderStatus()"> !USE!<br> LARGE KIT</button>
+                <button class="use_repair_kit_small_btn btn" type="button" onclick="useRepairKitSmall(),renderStatus()">
+                    !USE!<br> SMALL KIT</button>
+                <button class="use_repair_kit_large_btn btn" type="button" onclick="useRepairKitLarge(),renderStatus()">
+                    !USE!<br> LARGE KIT</button>
 
             </div>
         </section>

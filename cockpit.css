@@ -40,6 +40,37 @@ main{
     max-height: 900px;
 }
 
+/* #region UI DE5IGN */
+
+.btn{
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 0;
+    border-width: 2px;
+    border-style: none;
+    border-style: outset;
+    border-radius: 5px;
+    border-color: buttonborder;
+    border-image: none;
+    background-color: buttonface;
+    padding-block: 1px;
+    padding-inline: 6px;
+    text-align: center;
+    text-indent: 0;
+    text-transform: none;
+    text-shadow: none;
+    line-height: normal;
+    word-spacing: normal;
+    color: darkcyan;
+    font-family: var(--tertiary-font);
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    cursor: default;
+}
+
+/* #endregion */
+
 /* #region GAMEOVER-VISUALIZER */
 
 .game_over_visualizer {
